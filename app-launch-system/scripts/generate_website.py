@@ -36,6 +36,26 @@ BLOG_TEMPLATE_ROOT = SYSTEM_ROOT / "templates" / "blog-template"
 IMAGE_EXTENSIONS = {".avif", ".gif", ".jpeg", ".jpg", ".png", ".webp"}
 TOKEN_PATTERN = re.compile(r"\{\{[^{}]+\}\}")
 LOCAL_REFERENCE = re.compile(r"(?:href|src)=[\"']([^\"']+)[\"']", re.IGNORECASE)
+PRELAUNCH_CTA_LABELS = {
+    "en": "See the product roadmap",
+    "zh": "查看产品规划",
+    "ja": "製品ロードマップを見る",
+    "ko": "제품 로드맵 보기",
+    "es": "Ver la hoja de ruta",
+    "fr": "Voir la feuille de route",
+    "de": "Produkt-Roadmap ansehen",
+    "pt": "Ver o roteiro do produto",
+}
+DEVICE_TYPE_LABELS = {
+    "en": ["Android advertising players", "Android TVs and TV boxes", "Android tablets", "Older Android phones"],
+    "zh": ["Android 广告机", "Android 电视和电视盒子", "Android 平板", "旧 Android 手机"],
+    "ja": ["Android 広告プレーヤー", "Android テレビと TV ボックス", "Android タブレット", "古い Android スマートフォン"],
+    "ko": ["Android 광고 플레이어", "Android TV 및 TV 박스", "Android 태블릿", "오래된 Android 스마트폰"],
+    "es": ["Reproductores publicitarios Android", "Televisores y TV box Android", "Tabletas Android", "Teléfonos Android antiguos"],
+    "fr": ["Lecteurs publicitaires Android", "Téléviseurs et boîtiers TV Android", "Tablettes Android", "Anciens téléphones Android"],
+    "de": ["Android-Werbeplayer", "Android-Fernseher und TV-Boxen", "Android-Tablets", "Ältere Android-Smartphones"],
+    "pt": ["Players de publicidade Android", "TVs e TV boxes Android", "Tablets Android", "Celulares Android antigos"],
+}
 SEARCH_CONSOLE_TOKEN = re.compile(r"^[A-Za-z0-9_-]+$")
 SEARCH_CONSOLE_FILE = re.compile(r"^google[A-Za-z0-9_-]+\.html$")
 BING_WEBMASTER_TOKEN = re.compile(r"^[A-Za-z0-9_-]+$")
@@ -464,11 +484,28 @@ def organization_contact_section(organization: dict, locale: str, support_email:
     return (
         '<section class="organization-notice home-organization" aria-labelledby="home-organization-title">'
         f'<p class="category">{esc(contact_label)}</p>'
-        f'<h2 id="home-organization-title">{esc(identity or legal_name)}</h2>'
-        f'<p>{esc(contact_copy)}</p>'
-        f'<p>{" · ".join(links)}</p>'
+        '<h2 id="home-organization-title">OfflineSignage</h2>'
+        '<div class="organization-contact-grid">'
+        f'<div><p class="organization-product">OfflineSignage</p><p class="organization-legal">{esc(identity or legal_name)}</p><p class="organization-copy">{esc(contact_copy)}</p></div>'
+        f'<div class="organization-links">{"".join(f"<p>{link}</p>" for link in links)}</div>'
+        '</div>'
         '</section>'
     )
+
+
+def render_hero_proof(content: dict) -> str:
+    """Show the three product promises that matter before visitors scroll."""
+    translated = nested(content, "home.features", {}) or {}
+    feature_ids = ("local-media-playback", "browser-control", "reliable-recovery")
+    items = []
+    for feature_id in feature_ids:
+        item = translated.get(feature_id) if isinstance(translated, dict) else None
+        if not isinstance(item, dict):
+            continue
+        name = str(item.get("name") or "").strip()
+        if name:
+            items.append(f'<span class="hero-proof-item">{esc(name)}</span>')
+    return '<div class="hero-proof" aria-label="Product highlights">' + "".join(items) + "</div>" if items else ""
 
 
 def verified_features(app: dict) -> list[dict]:
@@ -648,7 +685,11 @@ def source_content(app: dict, locale: str, features: list[dict]) -> dict:
                     "contactCopy": "Contact us if you would like to join early testing or share a signage use case.", "contactCta": cta_label,
                 },
             }
-        localized["home"]["deviceTypes"] = device_types
+        localized["home"]["deviceTypes"] = DEVICE_TYPE_LABELS.get(base_language, DEVICE_TYPE_LABELS["en"])
+        localized["home"]["primaryCta"] = {
+            "label": PRELAUNCH_CTA_LABELS.get(base_language, PRELAUNCH_CTA_LABELS["en"]),
+            "url": str(nested(app, "prelaunch.primaryCta.url", "#features")),
+        }
         return merge(ui, localized)
 
     if base_language == "zh":
@@ -846,6 +887,12 @@ def resolve_locales(app: dict, locales_root: Path, features: list[dict]) -> tupl
                 raise GenerationError(f"locale {locale} inherits from unavailable locale: {inherit_from}")
             content = merge(contents[inherit_from], content)
             content["locale"] = locale
+        language = locale.split("-")[0].lower()
+        content.setdefault("home", {})["deviceTypes"] = DEVICE_TYPE_LABELS.get(language, DEVICE_TYPE_LABELS["en"])
+        content["home"]["primaryCta"] = {
+            "label": PRELAUNCH_CTA_LABELS.get(language, PRELAUNCH_CTA_LABELS["en"]),
+            "url": str(nested(content, "home.primaryCta.url", "#features")),
+        }
         validate_target_content(content, locale, features, path)
         contents[locale] = content
     return source, targets, contents
@@ -2502,10 +2549,14 @@ def render_site(
             else ""
         )
         prelaunch_cta = nested(app, "prelaunch.primaryCta", {}) or {}
-        prelaunch_url = str(prelaunch_cta.get("url") or "").strip() if isinstance(prelaunch_cta, dict) else ""
+        localized_cta = nested(content, "home.primaryCta", {}) or {}
+        prelaunch_url = str(
+            localized_cta.get("url") or (prelaunch_cta.get("url") if isinstance(prelaunch_cta, dict) else "") or ""
+        ).strip()
         prelaunch_label = str(
-            prelaunch_cta.get("label") or ("申请内测" if locale.startswith("zh") else "Join early access")
-        ) if isinstance(prelaunch_cta, dict) else ("申请内测" if locale.startswith("zh") else "Join early access")
+            localized_cta.get("label") or (prelaunch_cta.get("label") if isinstance(prelaunch_cta, dict) else "")
+            or ("查看产品规划" if locale.startswith("zh") else "See the product roadmap")
+        )
         if prelaunch:
             primary_action = (
                 f'<a class="primary-action" href="{esc(prelaunch_url)}">{esc(prelaunch_label)}</a>'
@@ -2649,6 +2700,7 @@ def render_site(
             "TAGLINE": esc(nested(content, "home.tagline")),
             "SHORT_DESCRIPTION": esc(nested(content, "home.shortDescription")),
             "PRIMARY_ACTION": primary_action,
+            "HERO_PROOF": render_hero_proof(content),
             "HERO_MEDIA": hero_media,
             "OVERVIEW_SECTION": render_overview_section(content, locale, app_name),
             "FEATURES_HEADING": esc(nested(content, "home.featuresHeading")),
