@@ -1,0 +1,4 @@
+# Local IDE and Python artifacts
+.idea/
+__pycache__/
+*.py[cod]

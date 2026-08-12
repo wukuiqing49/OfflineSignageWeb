@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cloudflare Search and Bing Webmaster"
+  short_description: "Connect Cloudflare Pages sites to Google, Bing, and IndexNow"
+  default_prompt: "Use $cloudflare-search-console to configure my Cloudflare Pages site for Google Search Console, Bing Webmaster Tools, and indexing readiness."
