@@ -55,8 +55,25 @@ assets:
 
 languages:
   source: "en-US"
-  targets: []
-  availableInApp: []
+  targets:
+    - "zh-CN"
+    - "ja-JP"
+    - "ko-KR"
+    - "es-ES"
+    - "fr-FR"
+    - "de-DE"
+    - "pt-BR"
+  websiteTargets:
+    - "zh-CN"
+    - "ja-JP"
+    - "ko-KR"
+    - "es-ES"
+    - "fr-FR"
+    - "de-DE"
+    - "pt-BR"
+  availableInApp:
+    - "en-US"
+    - "zh-CN"
   routing:
     autoDetect: true
     rememberSelection: true
@@ -98,8 +115,8 @@ prelaunch:
     - "Older Android phones"
 
 support:
-  email: ""
-  url: ""
+  email: "wukuiqing@gmail.com"
+  url: "https://heyehoi.cn/"
 privacy:
   policyUrl: ""
   dataPractices: []

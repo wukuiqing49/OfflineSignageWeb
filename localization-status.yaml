@@ -4,3 +4,31 @@ locales:
   status: source
   reviewer: ''
   reviewedAt: ''
+- locale: zh-CN
+  status: reviewed
+  reviewer: ''
+  reviewedAt: ''
+- locale: ja-JP
+  status: machine-draft
+  reviewer: ''
+  reviewedAt: ''
+- locale: ko-KR
+  status: machine-draft
+  reviewer: ''
+  reviewedAt: ''
+- locale: es-ES
+  status: machine-draft
+  reviewer: ''
+  reviewedAt: ''
+- locale: fr-FR
+  status: machine-draft
+  reviewer: ''
+  reviewedAt: ''
+- locale: de-DE
+  status: machine-draft
+  reviewer: ''
+  reviewedAt: ''
+- locale: pt-BR
+  status: machine-draft
+  reviewer: ''
+  reviewedAt: ''

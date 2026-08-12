@@ -1,0 +1,66 @@
+locale: "es-ES"
+languageName: "Español"
+direction: "ltr"
+reviewStatus: "machine-draft"
+inheritFrom: "en-US"
+navigation:
+  primaryLabel: "Navegación principal"
+  footerLabel: "Navegación del pie"
+  home: "Inicio"
+  features: "Funciones"
+  screenshots: "Dispositivos"
+  support: "Soporte"
+  privacy: "Privacidad"
+  about: "Empresa"
+  language: "Idioma"
+  backToApp: "Volver al inicio"
+common:
+  skipToContent: "Ir al contenido"
+  googlePlayCta: "Disponible en Google Play"
+  availability: "El enlace de Google Play estará disponible pronto"
+  rights: "Todos los derechos reservados."
+  notFoundTitle: "Página no encontrada"
+  notFoundCopy: "La página solicitada no existe."
+  returnHome: "Volver al inicio"
+home:
+  pageTitle: "OfflineSignage - Señalización digital Android"
+  metaDescription: "OfflineSignage es señalización digital local para reproductores publicitarios Android."
+  category: "Software de señalización digital Android"
+  tagline: "Señalización local, sencilla y fiable."
+  shortDescription: "Convierte reproductores Android, televisores, tabletas y teléfonos antiguos en pantallas digitales."
+  heroScreenshotAlt: "Visual del producto OfflineSignage para señalización Android"
+  heroScreenshotCaption: "Producto en desarrollo. La primera versión se centra en una reproducción local fiable."
+  featuresHeading: "Hoja de ruta del producto"
+  featuresIntro: "Señalización sin depender de la nube, cuentas ni servidores dedicados."
+  overviewHeading: "Diseñado para pantallas que siguen funcionando"
+  overviewIntro: "Cada parte está pensada para una señalización estable, desde la reproducción local hasta el control desde el navegador."
+  features:
+    local-media-playback: {name: "Reproducción multimedia local", description: "Reproduce imágenes, vídeos, contenido web y listas directamente en el dispositivo."}
+    browser-control: {name: "Control desde el navegador local", description: "Controla el reproductor desde un navegador de la misma red."}
+    reliable-recovery: {name: "Reproducción y recuperación fiables", description: "Mantén la pantalla activa y recupera el servicio y la reproducción tras un reinicio."}
+    multi-device-sync: {name: "Descubrimiento y sincronización", description: "Descubre pantallas cercanas y sincroniza recursos y listas de reproducción."}
+    signage-ready-display: {name: "Modos de pantalla para señalización", description: "Configura pantalla completa, orientación, volumen y silencio para uso prolongado."}
+  screenshotsHeading: "Dispositivos compatibles"
+  screenshotsIntro: "Primero para reproductores publicitarios Android, con soporte previsto para televisores, tabletas y teléfonos antiguos."
+  deviceTypes: ["Reproductores publicitarios Android", "Televisores y TV box Android", "Tabletas Android", "Teléfonos Android antiguos"]
+  workflowHeading: "Cómo funciona"
+  workflowIntro: "Instala, conecta, añade contenido y reproduce. La pantalla sigue funcionando aunque cierres el navegador."
+  workflowSteps: ["Instala OfflineSignage en un reproductor publicitario Android", "Abre el panel desde la dirección LAN o un código QR", "Añade imágenes, vídeos o páginas web y crea una lista", "Cierra el navegador y deja que la pantalla siga reproduciendo localmente"]
+  closingHeading: "Sigue OfflineSignage"
+  closingCopy: "Pronto compartiremos novedades de desarrollo y acceso temprano."
+privacy:
+  pageTitle: "Privacidad - OfflineSignage"
+  metaDescription: "Información de privacidad y estado de desarrollo de OfflineSignage."
+  heading: "Privacidad"
+  lastUpdatedLabel: "Última actualización"
+  content:
+    - heading: "Estado de desarrollo"
+      paragraphs: ["El producto está en desarrollo. Publicaremos una política de privacidad completa antes del lanzamiento."]
+support:
+  pageTitle: "Soporte - OfflineSignage"
+  metaDescription: "Soporte, información de empresa y contacto de OfflineSignage."
+  heading: "Soporte"
+  intro: "OfflineSignage está en desarrollo para ofrecer reproducción local fiable en señalización Android."
+  contactHeading: "Contacta con el equipo"
+  contactCopy: "Nos encantará conocer casos de uso de señalización y participantes para las primeras pruebas."
+  contactCta: "Enviar correo"

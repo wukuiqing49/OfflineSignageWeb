@@ -90,4 +90,6 @@ Use `SoftwareApplication` for the product and `Organization` only when the devel
 - `websiteUrl` is required before SEO/GEO can be marked ready.
 - `googlePlayUrl` is required before ASO can move beyond draft/blocked.
 - Machine-generated target locales remain drafts until human review.
+- The standard international set is `en-US`, `zh-CN`, `ja-JP`, `ko-KR`, `es-ES`, `fr-FR`, `de-DE`, and `pt-BR`; every enabled locale needs a complete translation file.
+- Company pages and contact notices must be generated for every enabled locale. Translate labels and company descriptions, but preserve the legal identity, website, email, and registered address exactly.
 - Project analysis dates must never be reused as article publication dates.

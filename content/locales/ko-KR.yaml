@@ -1,0 +1,66 @@
+locale: "ko-KR"
+languageName: "한국어"
+direction: "ltr"
+reviewStatus: "machine-draft"
+inheritFrom: "en-US"
+navigation:
+  primaryLabel: "주요 탐색"
+  footerLabel: "바닥글 탐색"
+  home: "홈"
+  features: "기능 계획"
+  screenshots: "지원 기기"
+  support: "지원"
+  privacy: "개인정보"
+  about: "회사 정보"
+  language: "언어"
+  backToApp: "홈으로 돌아가기"
+common:
+  skipToContent: "본문으로 이동"
+  googlePlayCta: "Google Play에서 받기"
+  availability: "Google Play 링크 준비 중"
+  rights: "All rights reserved."
+  notFoundTitle: "페이지를 찾을 수 없습니다"
+  notFoundCopy: "요청한 페이지가 존재하지 않습니다."
+  returnHome: "홈으로 돌아가기"
+home:
+  pageTitle: "OfflineSignage - Android 디지털 사이니지"
+  metaDescription: "OfflineSignage는 Android 광고 플레이어를 위한 로컬 우선 디지털 사이니지입니다."
+  category: "Android 디지털 사이니지"
+  tagline: "사이니지를 로컬에서 간단하고 안정적으로 운영하세요."
+  shortDescription: "Android 광고 플레이어, TV, 태블릿, 오래된 스마트폰을 디지털 사이니지로 바꿉니다."
+  heroScreenshotAlt: "OfflineSignage Android 사이니지 제품 비주얼"
+  heroScreenshotCaption: "개발 중인 제품입니다. 첫 버전은 안정적인 로컬 재생에 집중합니다."
+  featuresHeading: "제품 로드맵"
+  featuresIntro: "클라우드, 계정, 전용 서버에 의존하지 않는 사이니지를 지향합니다."
+  overviewHeading: "계속 실행되는 화면을 위해 설계"
+  overviewIntro: "로컬 재생부터 브라우저 제어까지 안정적인 사이니지 운영을 중심으로 설계합니다."
+  features:
+    local-media-playback: {name: "로컬 미디어 재생", description: "이미지, 동영상, 웹 콘텐츠와 재생 목록을 기기에서 재생합니다."}
+    browser-control: {name: "로컬 네트워크 브라우저 제어", description: "같은 네트워크의 브라우저에서 광고 플레이어를 제어합니다."}
+    reliable-recovery: {name: "안정적인 재생과 복구", description: "화면을 켜 두고 재부팅 후 서비스와 재생 상태를 복원합니다."}
+    multi-device-sync: {name: "여러 기기 검색과 동기화", description: "주변 사이니지 기기를 찾고 리소스와 재생 목록을 동기화합니다."}
+    signage-ready-display: {name: "사이니지 디스플레이 모드", description: "전체 화면, 방향, 볼륨, 음소거 등 장시간 운영 설정을 제공합니다."}
+  screenshotsHeading: "지원 기기"
+  screenshotsIntro: "Android 광고 플레이어를 우선 지원하며 TV, 태블릿, 오래된 스마트폰도 계획하고 있습니다."
+  deviceTypes: ["Android 광고 플레이어", "Android TV 및 TV 박스", "Android 태블릿", "오래된 Android 스마트폰"]
+  workflowHeading: "사용 방식"
+  workflowIntro: "설치, 연결, 콘텐츠 추가, 재생. 브라우저를 닫아도 기기는 계속 작동합니다."
+  workflowSteps: ["Android 광고 플레이어에 OfflineSignage 설치", "LAN 주소 또는 QR 코드로 제어 페이지 열기", "이미지, 동영상, 웹 페이지를 추가하고 재생 목록 만들기", "브라우저를 닫아도 기기에서 로컬 재생 계속"]
+  closingHeading: "OfflineSignage 소식 받기"
+  closingCopy: "개발 소식과 초기 테스트 안내를 준비하고 있습니다."
+privacy:
+  pageTitle: "개인정보 - OfflineSignage"
+  metaDescription: "OfflineSignage의 개인정보 및 개발 전 안내입니다."
+  heading: "개인정보"
+  lastUpdatedLabel: "최종 업데이트"
+  content:
+    - heading: "개발 전 상태"
+      paragraphs: ["제품은 개발 중입니다. 정식 출시 전에 전체 개인정보 처리방침을 제공합니다."]
+support:
+  pageTitle: "지원 - OfflineSignage"
+  metaDescription: "OfflineSignage 지원, 회사 정보 및 연락처입니다."
+  heading: "지원"
+  intro: "OfflineSignage는 Android 사이니지의 안정적인 로컬 재생을 목표로 개발 중입니다."
+  contactHeading: "프로젝트 팀에 문의"
+  contactCopy: "초기 테스트나 사이니지 사용 사례에 대한 문의를 환영합니다."
+  contactCta: "이메일 보내기"

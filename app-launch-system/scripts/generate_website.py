@@ -435,6 +435,42 @@ def organization_notice(organization: dict, locale: str) -> str:
     )
 
 
+def organization_contact_section(organization: dict, locale: str, support_email: str) -> str:
+    if not organization:
+        return ""
+    labels = organization_labels(locale)
+    legal_name = str(organization.get("legalName") or "").strip()
+    display_name = str(organization.get("displayName") or "").strip()
+    website = str(organization.get("website") or "").strip()
+    email = str(organization.get("email") or support_email or "").strip()
+    language = locale.split("-")[0].lower()
+    contact_labels = {
+        "en": ("Contact the team", "OfflineSignage is developed and operated by the team behind Shanghai Cudong Technology."),
+        "zh": ("联系我们", "OfflineSignage 由上海促动科技有限公司开发和运营。"),
+        "ja": ("チームに連絡", "OfflineSignage は上海促动科技有限公司が開発・運営しています。"),
+        "ko": ("팀에 문의", "OfflineSignage는 上海促动科技有限公司가 개발하고 운영합니다."),
+        "es": ("Contacta con el equipo", "OfflineSignage está desarrollado y operado por Shanghai Cudong Technology."),
+        "fr": ("Contacter l’équipe", "OfflineSignage est développé et opéré par Shanghai Cudong Technology."),
+        "de": ("Team kontaktieren", "OfflineSignage wird von Shanghai Cudong Technology entwickelt und betrieben."),
+        "pt": ("Fale com a equipe", "O OfflineSignage é desenvolvido e operado pela Shanghai Cudong Technology."),
+    }
+    contact_label, contact_copy = contact_labels.get(language, contact_labels["en"])
+    links = []
+    if website:
+        links.append(f'<a href="{esc(website)}" rel="noopener noreferrer">{esc(website)}</a>')
+    if email:
+        links.append(f'<a href="mailto:{esc(email)}">{esc(email)}</a>')
+    identity = " · ".join(item for item in (legal_name, display_name) if item)
+    return (
+        '<section class="organization-notice home-organization" aria-labelledby="home-organization-title">'
+        f'<p class="category">{esc(contact_label)}</p>'
+        f'<h2 id="home-organization-title">{esc(identity or legal_name)}</h2>'
+        f'<p>{esc(contact_copy)}</p>'
+        f'<p>{" · ".join(links)}</p>'
+        '</section>'
+    )
+
+
 def verified_features(app: dict) -> list[dict]:
     features = []
     for feature in app.get("features") or []:
@@ -2624,6 +2660,7 @@ def render_site(
             "WORKFLOW_SECTION": workflow_html,
             "CLOSING_HEADING": esc(nested(content, "home.closingHeading")),
             "CLOSING_COPY": esc(nested(content, "home.closingCopy")),
+            "ORGANIZATION_CONTACT_SECTION": organization_contact_section(organization, locale, support_email),
         })
         (locale_dir / "index.html").write_text(render_template("index.html", index_values), encoding="utf-8")
 

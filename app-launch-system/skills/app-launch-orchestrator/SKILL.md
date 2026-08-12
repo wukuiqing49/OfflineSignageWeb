@@ -28,7 +28,7 @@ Run all deterministic commands from the `app-launch-system` root through `script
 - Editorial content: `$blog-generator-skill`
 - Complete launch package: run analyzer if needed, then website, SEO/GEO, ASO, and blog in that order.
 
-For the website stage, prepare all required `content/locales/<locale>.yaml` files and run `python scripts/launch.py generate-website` from the `app-launch-system` root. The command resolves its defaults to the parent project root. Use `--force` only after the user approves replacing existing generated website files. In prelaunch mode, use `plannedCapabilities`, `prelaunch`, and `assets.coverImage`; do not invent Android source evidence or store metadata.
+For the website stage, prepare all required `content/locales/<locale>.yaml` files and run `python scripts/launch.py generate-website` from the `app-launch-system` root. The standard international set is `en-US`, `zh-CN`, `ja-JP`, `ko-KR`, `es-ES`, `fr-FR`, `de-DE`, and `pt-BR`; every enabled target needs a complete native-language translation and remains `machine-draft` until reviewed. Also load `app-launch-system/config/organization.yaml` for every locale: translate company labels and descriptions while preserving the legal name, developer name, website, email, and registered address. The command resolves its defaults to the parent project root. Use `--force` only after the user approves replacing existing generated website files. In prelaunch mode, use `plannedCapabilities`, `prelaunch`, and `assets.coverImage`; do not invent Android source evidence or store metadata.
 
 ## Shared output contract
 

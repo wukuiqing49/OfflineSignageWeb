@@ -1,0 +1,66 @@
+locale: "fr-FR"
+languageName: "Français"
+direction: "ltr"
+reviewStatus: "machine-draft"
+inheritFrom: "en-US"
+navigation:
+  primaryLabel: "Navigation principale"
+  footerLabel: "Navigation du pied de page"
+  home: "Accueil"
+  features: "Fonctionnalités"
+  screenshots: "Appareils"
+  support: "Assistance"
+  privacy: "Confidentialité"
+  about: "Entreprise"
+  language: "Langue"
+  backToApp: "Retour à l’accueil"
+common:
+  skipToContent: "Aller au contenu"
+  googlePlayCta: "Disponible sur Google Play"
+  availability: "Le lien Google Play sera bientôt disponible"
+  rights: "Tous droits réservés."
+  notFoundTitle: "Page introuvable"
+  notFoundCopy: "La page demandée n’existe pas."
+  returnHome: "Retour à l’accueil"
+home:
+  pageTitle: "OfflineSignage - Affichage numérique Android"
+  metaDescription: "OfflineSignage est une solution d’affichage numérique locale pour les lecteurs publicitaires Android."
+  category: "Logiciel d’affichage numérique Android"
+  tagline: "Un affichage local, simple et fiable."
+  shortDescription: "Transformez des lecteurs Android, téléviseurs, tablettes et anciens téléphones en écrans numériques."
+  heroScreenshotAlt: "Visuel du produit OfflineSignage pour affichage Android"
+  heroScreenshotCaption: "Produit en développement. La première version se concentre sur une lecture locale fiable."
+  featuresHeading: "Feuille de route"
+  featuresIntro: "Un affichage sans dépendre du cloud, d’un compte ou d’un serveur dédié."
+  overviewHeading: "Conçu pour les écrans qui restent actifs"
+  overviewIntro: "Chaque élément privilégie un affichage stable, de la lecture locale au contrôle depuis le navigateur."
+  features:
+    local-media-playback: {name: "Lecture multimédia locale", description: "Lisez images, vidéos, contenus Web et playlists directement sur l’appareil."}
+    browser-control: {name: "Contrôle par navigateur local", description: "Contrôlez le lecteur depuis un navigateur du même réseau."}
+    reliable-recovery: {name: "Lecture et reprise fiables", description: "Gardez l’écran actif et reprenez le service et la lecture après un redémarrage."}
+    multi-device-sync: {name: "Découverte et synchronisation", description: "Découvrez les écrans proches et synchronisez les ressources et playlists."}
+    signage-ready-display: {name: "Modes d’affichage signage", description: "Configurez le plein écran, l’orientation, le volume et le mode muet pour un usage prolongé."}
+  screenshotsHeading: "Appareils pris en charge"
+  screenshotsIntro: "D’abord conçu pour les lecteurs publicitaires Android, avec un support prévu pour les téléviseurs, tablettes et anciens téléphones."
+  deviceTypes: ["Lecteurs publicitaires Android", "Téléviseurs et boîtiers TV Android", "Tablettes Android", "Anciens téléphones Android"]
+  workflowHeading: "Fonctionnement"
+  workflowIntro: "Installez, connectez, ajoutez du contenu et lancez la lecture. L’écran continue même lorsque le navigateur est fermé."
+  workflowSteps: ["Installer OfflineSignage sur un lecteur publicitaire Android", "Ouvrir le panneau depuis l’adresse LAN ou un QR code", "Ajouter des images, vidéos ou pages Web et créer une playlist", "Fermer le navigateur et laisser l’écran continuer en lecture locale"]
+  closingHeading: "Suivre OfflineSignage"
+  closingCopy: "Les nouvelles du développement et les premiers tests arriveront bientôt."
+privacy:
+  pageTitle: "Confidentialité - OfflineSignage"
+  metaDescription: "Informations de confidentialité et état du développement d’OfflineSignage."
+  heading: "Confidentialité"
+  lastUpdatedLabel: "Dernière mise à jour"
+  content:
+    - heading: "État du développement"
+      paragraphs: ["Le produit est en développement. Une politique de confidentialité complète sera publiée avant le lancement."]
+support:
+  pageTitle: "Assistance - OfflineSignage"
+  metaDescription: "Assistance, informations sur l’entreprise et contact OfflineSignage."
+  heading: "Assistance"
+  intro: "OfflineSignage est en développement pour offrir une lecture locale fiable sur les écrans Android."
+  contactHeading: "Contacter l’équipe"
+  contactCopy: "Nous accueillons les cas d’usage et les participants aux premiers tests."
+  contactCta: "Envoyer un e-mail"

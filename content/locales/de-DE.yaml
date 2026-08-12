@@ -1,0 +1,66 @@
+locale: "de-DE"
+languageName: "Deutsch"
+direction: "ltr"
+reviewStatus: "machine-draft"
+inheritFrom: "en-US"
+navigation:
+  primaryLabel: "Hauptnavigation"
+  footerLabel: "Fußnavigation"
+  home: "Startseite"
+  features: "Funktionen"
+  screenshots: "Geräte"
+  support: "Support"
+  privacy: "Datenschutz"
+  about: "Unternehmen"
+  language: "Sprache"
+  backToApp: "Zur Startseite"
+common:
+  skipToContent: "Zum Inhalt springen"
+  googlePlayCta: "Bei Google Play erhältlich"
+  availability: "Der Google-Play-Link folgt in Kürze"
+  rights: "Alle Rechte vorbehalten."
+  notFoundTitle: "Seite nicht gefunden"
+  notFoundCopy: "Die angeforderte Seite existiert nicht."
+  returnHome: "Zur Startseite"
+home:
+  pageTitle: "OfflineSignage - Digital Signage für Android"
+  metaDescription: "OfflineSignage ist eine lokale Digital-Signage-Lösung für Android-Werbeplayer."
+  category: "Android-Digital-Signage-Software"
+  tagline: "Lokal, einfach und zuverlässig beschildern."
+  shortDescription: "Machen Sie Android-Player, Fernseher, Tablets und ältere Smartphones zu digitalen Anzeigegeräten."
+  heroScreenshotAlt: "OfflineSignage-Produktansicht für Android Digital Signage"
+  heroScreenshotCaption: "Das Produkt befindet sich in Entwicklung. Die erste Version konzentriert sich auf zuverlässige lokale Wiedergabe."
+  featuresHeading: "Produkt-Roadmap"
+  featuresIntro: "Digital Signage ohne Abhängigkeit von Cloud, Konto oder dediziertem Server."
+  overviewHeading: "Für Bildschirme, die weiterlaufen"
+  overviewIntro: "Von der lokalen Wiedergabe bis zur Browsersteuerung ist alles auf zuverlässiges Digital Signage ausgelegt."
+  features:
+    local-media-playback: {name: "Lokale Medienwiedergabe", description: "Bilder, Videos, Webinhalte und Playlists direkt auf dem Gerät abspielen."}
+    browser-control: {name: "Browsersteuerung im lokalen Netzwerk", description: "Den Player über einen Browser im selben Netzwerk steuern."}
+    reliable-recovery: {name: "Zuverlässige Wiedergabe und Wiederherstellung", description: "Bildschirm aktiv halten und Dienst sowie Wiedergabe nach einem Neustart wiederherstellen."}
+    multi-device-sync: {name: "Geräteerkennung und Synchronisierung", description: "Nahe Signage-Geräte erkennen und Ressourcen sowie Playlists synchronisieren."}
+    signage-ready-display: {name: "Signage-Anzeigemodi", description: "Vollbild, Ausrichtung, Lautstärke und Stummschaltung für den Dauerbetrieb konfigurieren."}
+  screenshotsHeading: "Unterstützte Geräte"
+  screenshotsIntro: "Zuerst für Android-Werbeplayer, mit geplanter Unterstützung für Fernseher, Tablets und ältere Smartphones."
+  deviceTypes: ["Android-Werbeplayer", "Android-Fernseher und TV-Boxen", "Android-Tablets", "Ältere Android-Smartphones"]
+  workflowHeading: "So funktioniert es"
+  workflowIntro: "Installieren, verbinden, Inhalte hinzufügen und abspielen. Der Bildschirm läuft weiter, wenn der Browser geschlossen wird."
+  workflowSteps: ["OfflineSignage auf einem Android-Werbeplayer installieren", "Das Bedienfeld über LAN-Adresse oder QR-Code öffnen", "Bilder, Videos oder Webseiten hinzufügen und eine Playlist erstellen", "Browser schließen und die lokale Wiedergabe fortsetzen lassen"]
+  closingHeading: "OfflineSignage folgen"
+  closingCopy: "Entwicklungsneuigkeiten und Informationen zu frühen Tests folgen bald."
+privacy:
+  pageTitle: "Datenschutz - OfflineSignage"
+  metaDescription: "Datenschutzinformationen und Entwicklungsstatus von OfflineSignage."
+  heading: "Datenschutz"
+  lastUpdatedLabel: "Zuletzt aktualisiert"
+  content:
+    - heading: "Entwicklungsstatus"
+      paragraphs: ["Das Produkt befindet sich in Entwicklung. Vor dem Start wird eine vollständige Datenschutzerklärung veröffentlicht."]
+support:
+  pageTitle: "Support - OfflineSignage"
+  metaDescription: "Support, Unternehmensinformationen und Kontakt zu OfflineSignage."
+  heading: "Support"
+  intro: "OfflineSignage wird für eine zuverlässige lokale Wiedergabe auf Android-Signage-Geräten entwickelt."
+  contactHeading: "Team kontaktieren"
+  contactCopy: "Wir freuen uns über Signage-Anwendungsfälle und Teilnehmer für frühe Tests."
+  contactCta: "E-Mail senden"

@@ -477,6 +477,8 @@ languages:
     - "pt-BR"
 ```
 
+启用这些语言后，必须为每个目标准备 `content/locales/<locale>.yaml`，并生成对应的首页、企业信息页、支持页和隐私页。企业资料统一来自 `app-launch-system/config/organization.yaml`：企业法定名称、开发者名称、官网、邮箱和注册地址在各语言中保持一致；企业简介、页面标题、字段标签和联系文案需要本地化。生成后的 `localization-status.yaml` 会记录每种语言是否完成审核。
+
 `inheritFrom: "en-US"` 只允许作为机器草稿的启动方式。它可以保证所有页面和结构化功能详情完整生成，但继承内容不是最终翻译，发布前必须逐语言人工审核。
 
 ## Google Search Console 验证

@@ -1,0 +1,66 @@
+locale: "ja-JP"
+languageName: "日本語"
+direction: "ltr"
+reviewStatus: "machine-draft"
+inheritFrom: "en-US"
+navigation:
+  primaryLabel: "メインナビゲーション"
+  footerLabel: "フッターナビゲーション"
+  home: "ホーム"
+  features: "機能計画"
+  screenshots: "対応デバイス"
+  support: "サポート"
+  privacy: "プライバシー"
+  about: "会社情報"
+  language: "言語"
+  backToApp: "ホームに戻る"
+common:
+  skipToContent: "本文へ移動"
+  googlePlayCta: "Google Play で入手"
+  availability: "Google Play のリンクは準備中です"
+  rights: "All rights reserved."
+  notFoundTitle: "ページが見つかりません"
+  notFoundCopy: "指定されたページは存在しません。"
+  returnHome: "ホームに戻る"
+home:
+  pageTitle: "OfflineSignage - Android デジタルサイネージ"
+  metaDescription: "OfflineSignage は Android 広告プレーヤー向けのローカル優先デジタルサイネージです。"
+  category: "Android デジタルサイネージ"
+  tagline: "サイネージをローカルで、シンプルに、安定して。"
+  shortDescription: "Android 広告プレーヤー、テレビ、タブレット、古いスマートフォンをデジタルサイネージに変えます。"
+  heroScreenshotAlt: "OfflineSignage の Android サイネージ製品ビジュアル"
+  heroScreenshotCaption: "開発中の製品です。最初のリリースは安定したローカル再生に集中します。"
+  featuresHeading: "製品ロードマップ"
+  featuresIntro: "クラウド、アカウント、専用サーバーに依存しないサイネージを目指します。"
+  overviewHeading: "動き続ける画面のために設計"
+  overviewIntro: "ローカル再生からブラウザー操作まで、安定したサイネージ運用を中心に設計しています。"
+  features:
+    local-media-playback: {name: "ローカルメディア再生", description: "画像、動画、Web コンテンツ、プレイリストを端末上で再生します。"}
+    browser-control: {name: "LAN ブラウザー操作", description: "同じネットワークのブラウザーから広告プレーヤーを操作します。"}
+    reliable-recovery: {name: "安定再生と復旧", description: "画面を常時点灯し、再起動後にサービスと再生状態を復元します。"}
+    multi-device-sync: {name: "複数デバイスの検出と同期", description: "近くのサイネージ端末を検出し、リソースとプレイリストを同期します。"}
+    signage-ready-display: {name: "サイネージ表示モード", description: "全画面、向き、音量、ミュートなど長時間運用向けの設定を提供します。"}
+  screenshotsHeading: "対応デバイス"
+  screenshotsIntro: "Android 広告プレーヤーを中心に、テレビ、タブレット、古いスマートフォンにも対応予定です。"
+  deviceTypes: ["Android 広告プレーヤー", "Android テレビと TV ボックス", "Android タブレット", "古い Android スマートフォン"]
+  workflowHeading: "使い方"
+  workflowIntro: "インストール、接続、コンテンツの追加、再生。ブラウザーを閉じても端末は動き続けます。"
+  workflowSteps: ["Android 広告プレーヤーに OfflineSignage をインストール", "LAN アドレスまたは QR コードから操作画面を開く", "画像、動画、Web ページを追加してプレイリストを作成", "ブラウザーを閉じても端末でローカル再生を継続"]
+  closingHeading: "OfflineSignage をフォロー"
+  closingCopy: "開発状況と早期テストの案内をお待ちください。"
+privacy:
+  pageTitle: "プライバシー - OfflineSignage"
+  metaDescription: "OfflineSignage のプライバシーと開発前の情報。"
+  heading: "プライバシー"
+  lastUpdatedLabel: "最終更新"
+  content:
+    - heading: "開発前のステータス"
+      paragraphs: ["製品は開発中です。正式リリース前に完全なプライバシーポリシーを公開します。"]
+support:
+  pageTitle: "サポート - OfflineSignage"
+  metaDescription: "OfflineSignage のサポート、会社情報、連絡先。"
+  heading: "サポート"
+  intro: "OfflineSignage は Android サイネージの安定したローカル再生を目指して開発中です。"
+  contactHeading: "プロジェクトチームに連絡"
+  contactCopy: "早期テストやサイネージの利用シーンについてのお問い合わせをお待ちしています。"
+  contactCta: "メールを送る"

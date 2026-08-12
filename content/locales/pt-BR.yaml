@@ -1,0 +1,66 @@
+locale: "pt-BR"
+languageName: "Português (Brasil)"
+direction: "ltr"
+reviewStatus: "machine-draft"
+inheritFrom: "en-US"
+navigation:
+  primaryLabel: "Navegação principal"
+  footerLabel: "Navegação do rodapé"
+  home: "Início"
+  features: "Recursos"
+  screenshots: "Dispositivos"
+  support: "Suporte"
+  privacy: "Privacidade"
+  about: "Empresa"
+  language: "Idioma"
+  backToApp: "Voltar ao início"
+common:
+  skipToContent: "Ir para o conteúdo"
+  googlePlayCta: "Disponível no Google Play"
+  availability: "O link do Google Play estará disponível em breve"
+  rights: "Todos os direitos reservados."
+  notFoundTitle: "Página não encontrada"
+  notFoundCopy: "A página solicitada não existe."
+  returnHome: "Voltar ao início"
+home:
+  pageTitle: "OfflineSignage - Sinalização digital Android"
+  metaDescription: "OfflineSignage é sinalização digital local para players de publicidade Android."
+  category: "Software de sinalização digital Android"
+  tagline: "Sinalização local, simples e confiável."
+  shortDescription: "Transforme players Android, TVs, tablets e celulares antigos em telas digitais."
+  heroScreenshotAlt: "Visual do produto OfflineSignage para sinalização Android"
+  heroScreenshotCaption: "Produto em desenvolvimento. A primeira versão foca em reprodução local confiável."
+  featuresHeading: "Roteiro do produto"
+  featuresIntro: "Sinalização sem depender de nuvem, contas ou servidores dedicados."
+  overviewHeading: "Feito para telas que continuam funcionando"
+  overviewIntro: "Tudo é pensado para uma sinalização estável, da reprodução local ao controle pelo navegador."
+  features:
+    local-media-playback: {name: "Reprodução de mídia local", description: "Reproduza imagens, vídeos, conteúdo web e playlists diretamente no dispositivo."}
+    browser-control: {name: "Controle pelo navegador local", description: "Controle o player usando um navegador na mesma rede."}
+    reliable-recovery: {name: "Reprodução e recuperação confiáveis", description: "Mantenha a tela ativa e recupere o serviço e a reprodução após uma reinicialização."}
+    multi-device-sync: {name: "Descoberta e sincronização de dispositivos", description: "Encontre telas próximas e sincronize recursos e playlists."}
+    signage-ready-display: {name: "Modos de exibição para sinalização", description: "Configure tela cheia, orientação, volume e mudo para uso prolongado."}
+  screenshotsHeading: "Dispositivos compatíveis"
+  screenshotsIntro: "Primeiro para players de publicidade Android, com suporte planejado para TVs, tablets e celulares antigos."
+  deviceTypes: ["Players de publicidade Android", "TVs e TV boxes Android", "Tablets Android", "Celulares Android antigos"]
+  workflowHeading: "Como funciona"
+  workflowIntro: "Instale, conecte, adicione conteúdo e reproduza. A tela continua funcionando mesmo com o navegador fechado."
+  workflowSteps: ["Instalar o OfflineSignage em um player de publicidade Android", "Abrir o painel pelo endereço LAN ou código QR", "Adicionar imagens, vídeos ou páginas web e criar uma playlist", "Fechar o navegador e continuar a reprodução local"]
+  closingHeading: "Acompanhe o OfflineSignage"
+  closingCopy: "Em breve compartilharemos novidades do desenvolvimento e dos testes iniciais."
+privacy:
+  pageTitle: "Privacidade - OfflineSignage"
+  metaDescription: "Informações de privacidade e status de desenvolvimento do OfflineSignage."
+  heading: "Privacidade"
+  lastUpdatedLabel: "Última atualização"
+  content:
+    - heading: "Status de desenvolvimento"
+      paragraphs: ["O produto está em desenvolvimento. Uma política de privacidade completa será publicada antes do lançamento."]
+support:
+  pageTitle: "Suporte - OfflineSignage"
+  metaDescription: "Suporte, informações da empresa e contato do OfflineSignage."
+  heading: "Suporte"
+  intro: "O OfflineSignage está sendo desenvolvido para oferecer reprodução local confiável em telas Android."
+  contactHeading: "Fale com a equipe"
+  contactCopy: "Aceitamos casos de uso de sinalização e participantes para os primeiros testes."
+  contactCta: "Enviar e-mail"

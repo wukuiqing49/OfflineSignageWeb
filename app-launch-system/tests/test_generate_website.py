@@ -307,6 +307,86 @@ class GenerateWebsiteTests(unittest.TestCase):
         self.assertEqual("prelaunch", readiness["releaseStage"])
         self.assertEqual("skipped", readiness["aso"]["status"])
 
+    def test_prelaunch_multilingual_site_includes_company_contact(self) -> None:
+        data = {
+            "schemaVersion": "1.0",
+            "releaseStage": "prelaunch",
+            "name": "OfflineSignage",
+            "category": "Android digital signage",
+            "description": {
+                "short": "Local-first digital signage for Android advertising players.",
+                "full": "Run dependable digital signage on Android devices.",
+                "valueProposition": "Local, simple, and reliable signage.",
+            },
+            "plannedCapabilities": [
+                {"id": "local-playback", "name": "Local playback", "description": "Play local media."},
+            ],
+            "brand": {"tagline": "Digital signage that stays local.", "colors": ["#0f766e"]},
+            "assets": {
+                "root": "site-input",
+                "icon": "icon.png",
+                "coverImage": "cover.png",
+                "socialImage": "cover.png",
+                "screenshots": [],
+            },
+            "languages": {
+                "source": "en-US",
+                "targets": ["zh-CN"],
+                "websiteTargets": ["zh-CN"],
+                "routing": {"autoDetect": True, "rememberSelection": True, "sourceAtRoot": True, "aliases": {}},
+            },
+            "prelaunch": {
+                "status": "in-development",
+                "primaryCta": {"label": "See the roadmap", "url": "#features"},
+                "announcement": "OfflineSignage is in development.",
+                "workflow": ["Install", "Connect", "Play"],
+                "deviceTypes": ["Android advertising players"],
+            },
+            "websiteUrl": "",
+            "support": {"email": "contact@example.test"},
+            "privacy": {"policyUrl": "", "dataPractices": []},
+        }
+        app_info = self.root / "prelaunch-multilingual-app-info.yaml"
+        app_info.write_text(yaml.safe_dump(data, sort_keys=False), encoding="utf-8")
+        (self.locales / "zh-CN.yaml").write_text(
+            yaml.safe_dump(
+                {
+                    "locale": "zh-CN",
+                    "languageName": "简体中文",
+                    "direction": "ltr",
+                    "reviewStatus": "reviewed",
+                    "inheritFrom": "en-US",
+                    "navigation": {"about": "企业信息", "support": "支持", "privacy": "隐私"},
+                    "home": {"pageTitle": "OfflineSignage - Android 广告机系统"},
+                },
+                allow_unicode=True,
+                sort_keys=False,
+            ),
+            encoding="utf-8",
+        )
+        organization = self.root / "organization.yaml"
+        organization.write_text(
+            yaml.safe_dump(
+                {
+                    "schemaVersion": "1.0",
+                    "legalName": "示例科技有限公司",
+                    "displayName": "Example Studio",
+                    "website": "https://example.test/",
+                    "email": "contact@example.test",
+                },
+                sort_keys=False,
+            ),
+            encoding="utf-8",
+        )
+        generate(app_info, self.output, self.locales, organization_path=organization)
+        root = (self.output / "index.html").read_text(encoding="utf-8")
+        localized = (self.output / "zh-CN" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("Example Studio", root)
+        self.assertIn("contact@example.test", root)
+        self.assertIn("示例科技有限公司", localized)
+        self.assertIn("contact@example.test", localized)
+        self.assertTrue((self.output / "zh-CN" / "about.html").is_file())
+
     def test_google_play_and_youtube_links_render(self) -> None:
         data = self.app_data()
         data["googlePlayUrl"] = "https://play.google.com/store/apps/details?id=dev.example.pixelnotes"

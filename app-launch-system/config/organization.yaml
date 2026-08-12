@@ -23,3 +23,21 @@ localized:
   zh-CN:
     description: "一家专注于软件产品与数字工具设计、开发和运营的科技公司，致力于提供可靠、易用的数字产品。"
     countryName: "中国"
+  ja-JP:
+    description: "信頼性が高く使いやすいソフトウェア製品とデジタルツールを開発・運営するテクノロジー企業です。"
+    countryName: "中国"
+  ko-KR:
+    description: "신뢰할 수 있고 사용하기 쉬운 소프트웨어 제품과 디지털 도구를 개발하고 운영하는 기술 기업입니다."
+    countryName: "중국"
+  es-ES:
+    description: "Empresa tecnológica dedicada al diseño, desarrollo y operación de productos digitales y herramientas de software fiables y fáciles de usar."
+    countryName: "China"
+  fr-FR:
+    description: "Entreprise technologique spécialisée dans la conception, le développement et l'exploitation de produits numériques et d'outils logiciels fiables et simples à utiliser."
+    countryName: "Chine"
+  de-DE:
+    description: "Technologieunternehmen für die Entwicklung und den Betrieb zuverlässiger und einfach nutzbarer digitaler Produkte und Softwarewerkzeuge."
+    countryName: "China"
+  pt-BR:
+    description: "Empresa de tecnologia focada no design, desenvolvimento e operação de produtos digitais e ferramentas de software confiáveis e fáceis de usar."
+    countryName: "China"
