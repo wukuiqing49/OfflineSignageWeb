@@ -46,6 +46,16 @@ PRELAUNCH_CTA_LABELS = {
     "de": "Produkt-Roadmap ansehen",
     "pt": "Ver o roteiro do produto",
 }
+WORKFLOW_LABELS = {
+    "en": ("How it works", "See how it works"),
+    "zh": ("工作方式", "查看工作方式"),
+    "ja": ("使い方", "使い方を見る"),
+    "ko": ("사용 방식", "사용 방식 보기"),
+    "es": ("Cómo funciona", "Ver cómo funciona"),
+    "fr": ("Fonctionnement", "Voir le fonctionnement"),
+    "de": ("So funktioniert es", "Funktionsweise ansehen"),
+    "pt": ("Como funciona", "Ver como funciona"),
+}
 DEVICE_TYPE_LABELS = {
     "en": ["Android advertising players", "Android TVs and TV boxes", "Android tablets", "Older Android phones"],
     "zh": ["Android 广告机", "Android 电视和电视盒子", "Android 平板", "旧 Android 手机"],
@@ -506,6 +516,39 @@ def render_hero_proof(content: dict) -> str:
         if name:
             items.append(f'<span class="hero-proof-item">{esc(name)}</span>')
     return '<div class="hero-proof" aria-label="Product highlights">' + "".join(items) + "</div>" if items else ""
+
+
+def render_scenarios(content: dict, app: dict, locale: str) -> str:
+    language = locale.split("-")[0].lower()
+    labels = {
+        "en": ("Made for everyday screens", "Start with the screen you already have, then grow to a local network of displays."),
+        "zh": ("适合真实使用场景", "从现有设备开始，把门店、前台、活动现场的屏幕变成稳定运行的广告机。"),
+        "ja": ("日常の画面のために", "手元の端末から始めて、店舗や受付、イベントの画面をローカルに運用できます。"),
+        "ko": ("매일 사용하는 화면을 위해", "기존 기기에서 시작해 매장, 로비, 행사 화면을 로컬 네트워크로 운영하세요."),
+        "es": ("Para pantallas reales", "Empieza con los dispositivos que ya tienes y amplía a una red local de pantallas."),
+        "fr": ("Pour les écrans du quotidien", "Commencez avec les appareils existants et développez un réseau local d'écrans."),
+        "de": ("Für Bildschirme im Alltag", "Starten Sie mit vorhandenen Geräten und erweitern Sie Ihr lokales Display-Netzwerk."),
+        "pt": ("Para telas do dia a dia", "Comece com os dispositivos que você já tem e cresça para uma rede local de telas."),
+    }
+    default_items = {
+        "en": ["Storefront and menu boards", "Reception, lobby, and events", "TVs, tablets, and older phones"],
+        "zh": ["门店海报和菜单屏", "前台、大厅和活动现场", "电视、平板和旧手机"],
+        "ja": ["店頭ポスターとメニュー", "受付、ロビー、イベント", "テレビ、タブレット、古いスマートフォン"],
+        "ko": ["매장 포스터와 메뉴 보드", "리셉션, 로비, 행사 화면", "TV, 태블릿, 구형 스마트폰"],
+        "es": ["Carteles y menús de tienda", "Recepciones, vestíbulos y eventos", "TV, tabletas y teléfonos antiguos"],
+        "fr": ["Affiches et menus en magasin", "Accueil, hall et événements", "TV, tablettes et anciens téléphones"],
+        "de": ["Schaufenster und Menütafeln", "Empfang, Lobby und Veranstaltungen", "Fernseher, Tablets und ältere Smartphones"],
+        "pt": ["Cartazes e menus de loja", "Recepção, lobby e eventos", "TVs, tablets e celulares antigos"],
+    }
+    items = [str(item).strip() for item in (app.get("useCases") or []) if isinstance(item, str) and item.strip()]
+    items = items[:3] or default_items.get(language, default_items["en"])
+    heading, intro = labels.get(language, labels["en"])
+    cards = "".join(f'<article><h3>{esc(item)}</h3></article>' for item in items)
+    return (
+        '<section class="scenarios-band" aria-labelledby="scenarios-title">'
+        f'<div class="section-heading"><h2 id="scenarios-title">{esc(heading)}</h2><p>{esc(intro)}</p></div>'
+        f'<div class="scenario-list">{cards}</div></section>'
+    )
 
 
 def verified_features(app: dict) -> list[dict]:
@@ -2594,7 +2637,7 @@ def render_site(
         workflow_html = ""
         if workflow_steps:
             workflow_html = (
-                '<section class="workflow" aria-labelledby="workflow-title"><div class="section-heading">'
+                '<section id="workflow" class="workflow" aria-labelledby="workflow-title"><div class="section-heading">'
                 f'<h2 id="workflow-title">{esc(nested(content, "home.workflowHeading", ""))}</h2>'
                 f'<p>{esc(nested(content, "home.workflowIntro", ""))}</p></div><ol>'
                 + "".join(f"<li>{esc(item)}</li>" for item in workflow_steps)
@@ -2641,6 +2684,7 @@ def render_site(
                 "FOOTER_NAV_LABEL": esc(nested(content, "navigation.footerLabel")),
                 "NAV_HOME": esc(nested(content, "navigation.home")),
                 "NAV_FEATURES": esc(nested(content, "navigation.features")),
+                "NAV_WORKFLOW": esc(WORKFLOW_LABELS.get(locale.split("-")[0].lower(), WORKFLOW_LABELS["en"])[0]),
                 "NAV_SUPPORT": esc(nested(content, "navigation.support")),
                 "NAV_PRIVACY": esc(nested(content, "navigation.privacy")),
                 "NAV_ABOUT": esc(
@@ -2700,6 +2744,7 @@ def render_site(
             "TAGLINE": esc(nested(content, "home.tagline")),
             "SHORT_DESCRIPTION": esc(nested(content, "home.shortDescription")),
             "PRIMARY_ACTION": primary_action,
+            "WORKFLOW_LINK_LABEL": esc(WORKFLOW_LABELS.get(locale.split("-")[0].lower(), WORKFLOW_LABELS["en"])[1]),
             "HERO_PROOF": render_hero_proof(content),
             "HERO_MEDIA": hero_media,
             "OVERVIEW_SECTION": render_overview_section(content, locale, app_name),
@@ -2709,6 +2754,7 @@ def render_site(
             "SCREENSHOT_SECTION": render_screenshots(
                 content, assets["screenshots"], base_path, locale == source
             ),
+            "SCENARIOS_SECTION": render_scenarios(content, app, locale),
             "WORKFLOW_SECTION": workflow_html,
             "CLOSING_HEADING": esc(nested(content, "home.closingHeading")),
             "CLOSING_COPY": esc(nested(content, "home.closingCopy")),

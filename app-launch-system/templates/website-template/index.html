@@ -24,10 +24,10 @@
     </a>
     <nav aria-label="{{PRIMARY_NAV_LABEL}}">
       <a href="#features">{{NAV_FEATURES}}</a>
+      <a href="#workflow">{{NAV_WORKFLOW}}</a>
       {{BLOG_NAV_ITEM}}
       <a href="{{ABOUT_URL}}">{{NAV_ABOUT}}</a>
       <a href="{{SUPPORT_URL}}">{{NAV_SUPPORT}}</a>
-      <a href="{{PRIVACY_URL}}">{{NAV_PRIVACY}}</a>
       {{LANGUAGE_SWITCHER}}
     </nav>
   </header>
@@ -39,7 +39,10 @@
         <h1 id="hero-title">{{APP_NAME}}</h1>
         <p class="tagline">{{TAGLINE}}</p>
         <p class="summary">{{SHORT_DESCRIPTION}}</p>
-        {{PRIMARY_ACTION}}
+        <div class="hero-actions">
+          {{PRIMARY_ACTION}}
+          <a class="secondary-action" href="#workflow">{{WORKFLOW_LINK_LABEL}}</a>
+        </div>
         {{HERO_PROOF}}
       </div>
       {{HERO_MEDIA}}
@@ -48,6 +51,8 @@
     {{OVERVIEW_SECTION}}
 
     {{SCREENSHOT_SECTION}}
+
+    {{SCENARIOS_SECTION}}
 
     <section id="features" class="content-band" aria-labelledby="features-title">
       <div class="section-heading">
