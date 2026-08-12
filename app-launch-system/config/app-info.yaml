@@ -1,4 +1,5 @@
 schemaVersion: "1.0"
+releaseStage: "app"
 sourceProject: ""
 analyzedAt: ""
 analysis:
@@ -116,3 +117,14 @@ evidence:
     supports: []
 unknowns: []
 claimsToAvoid: []
+
+# Prelaunch-only fields. Keep releaseStage as "app" for a verified Android app site.
+prelaunch:
+  status: "in-development"
+  primaryCta:
+    label: ""
+    url: ""
+  announcement: ""
+  workflow: []
+  deviceTypes: []
+plannedCapabilities: []

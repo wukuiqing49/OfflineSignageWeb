@@ -110,6 +110,59 @@ SEO/GEO、ASO 草稿与发布就绪报告
 
 只有具备完整 `details` 且有源码证据的功能才会生成独立功能页和博客。信息不足的功能可以保留在首页，但不会用通用套话生成薄文章。
 
+## 预发布产品官网
+
+如果 Android App 还没有开始开发，或只有产品规格而没有可验证的 APK，可以使用 `releaseStage: "prelaunch"` 生成产品预告官网。这个模式不会要求 `sourceProject`、`packageName`、Android 源码、App 截图或 Google Play 地址，也不会生成 ASO、功能详情页或博客。
+
+预发布模式需要产品主视觉和规划能力：
+
+```yaml
+releaseStage: "prelaunch"
+name: "OfflineSignage"
+category: "Android 数字广告机系统"
+description:
+  short: "让 Android 广告机稳定地独立播放内容。"
+  full: "通过局域网浏览器控制 Android 广告机，无需云端账号。"
+  valueProposition: "Local + Simple + Reliable"
+plannedCapabilities:
+  - id: "local-playback"
+    name: "本地播放"
+    description: "在广告机本地播放图片和视频。"
+  - id: "browser-control"
+    name: "浏览器控制"
+    description: "通过同一局域网内的浏览器控制广告机。"
+prelaunch:
+  status: "in-development"
+  primaryCta:
+    label: "申请内测"
+    url: "mailto:hello@example.com"
+  workflow:
+    - "安装 OfflineSignage"
+    - "通过局域网浏览器控制广告机"
+    - "关闭浏览器后继续独立播放"
+  deviceTypes:
+    - "Android 广告机"
+    - "Android 电视和电视盒子"
+    - "Android 平板"
+    - "旧 Android 手机"
+assets:
+  root: "app-launch-system/config/assets"
+  icon: "icon/icon.png"
+  coverImage: "cover/offline-signage-cover.png"
+  socialImage: "social/offline-signage-social.png"
+  screenshots: []
+```
+
+`assets.coverImage` 是预发布模式的必需主视觉。它可以是产品概念图或广告机实拍图，但不能使用其他 App 的截图。官网生成命令仍然是：
+
+```powershell
+python app-launch-system/scripts/launch.py validate-app-info app-info.yaml
+python app-launch-system/scripts/launch.py generate-website
+python app-launch-system/scripts/launch.py validate-output .
+```
+
+当 Android App 有真实项目、截图和已验证功能后，把 `releaseStage` 改为 `app`，再通过 `$app-analyzer-skill` 生成正式的 `app-info.yaml`。正式模式会恢复源码证据、真实截图、Google Play、ASO 和功能博客的校验门槛。
+
 生成结果不需要 Node 构建、数据库、API 或服务端渲染。`index.html` 是根入口，`404.html` 和 `_headers` 用于 Cloudflare Pages 静态托管。`static-site-manifest.json` 只列出允许部署的公开文件，避免把分析证据和插件配置上传。系统只生成文件，不会自动部署。
 
 除公开网站外，还会生成不进入 `static-site-manifest.json` 的编辑与审计资料：

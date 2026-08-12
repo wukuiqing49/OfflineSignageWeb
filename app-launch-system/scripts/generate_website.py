@@ -445,6 +445,32 @@ def verified_features(app: dict) -> list[dict]:
     return features
 
 
+def prelaunch_features(app: dict) -> list[dict]:
+    """Convert planned product capabilities into homepage-only feature summaries."""
+    planned = app.get("plannedCapabilities") or []
+    features: list[dict] = []
+    for index, item in enumerate(planned, start=1):
+        if isinstance(item, dict):
+            name = str(item.get("name") or item.get("id") or "").strip()
+            description = str(item.get("description") or "").strip()
+            feature_id = str(item.get("id") or slugify(name, f"planned-{index}")).strip()
+        else:
+            name = str(item or "").strip()
+            description = ""
+            feature_id = slugify(name, f"planned-{index}")
+        if name:
+            features.append(
+                {
+                    "id": feature_id,
+                    "name": name,
+                    "description": description or "Planned for the OfflineSignage product.",
+                    "confidence": "planned",
+                    "evidence": [],
+                }
+            )
+    return features
+
+
 def content_ready_features(features: list[dict]) -> list[dict]:
     """Return only features with enough verified facts for a substantive page."""
     ready: list[dict] = []
@@ -493,6 +519,7 @@ def source_content(app: dict, locale: str, features: list[dict]) -> dict:
     tagline = str(brand.get("tagline") or description.get("valueProposition") or "").strip()
     short = str(description.get("short") or "").strip()
     category = str(app.get("category") or ("Android 应用" if base_language == "zh" else "Android app"))
+    prelaunch = str(app.get("releaseStage") or "app") == "prelaunch"
     feature_map = {
         str(item["id"]): {
             "name": str(item.get("name") or ""),
@@ -505,6 +532,89 @@ def source_content(app: dict, locale: str, features: list[dict]) -> dict:
         for item in content_ready_features(features)
     }
     practices = [item for item in (nested(app, "privacy.dataPractices", []) or []) if isinstance(item, str) and item.strip()]
+    if prelaunch:
+        prelaunch_data = app.get("prelaunch") or {}
+        cta = prelaunch_data.get("primaryCta") if isinstance(prelaunch_data, dict) else {}
+        cta_label = str((cta or {}).get("label") or ("申请内测" if base_language == "zh" else "Join the early access list"))
+        announcement = str(
+            (prelaunch_data or {}).get("announcement")
+            or ("产品正在开发中，欢迎关注后续测试版本。" if base_language == "zh" else "OfflineSignage is in development. Follow the project for early access updates.")
+        )
+        workflow = [str(item) for item in ((prelaunch_data or {}).get("workflow") or []) if str(item).strip()]
+        device_types = [str(item) for item in ((prelaunch_data or {}).get("deviceTypes") or []) if str(item).strip()]
+        if base_language == "zh":
+            localized = {
+                "locale": locale, "reviewStatus": "source",
+                "home": {
+                    "pageTitle": f"{name} - Android 广告机系统",
+                    "metaDescription": short,
+                    "category": category,
+                    "tagline": tagline,
+                    "shortDescription": short,
+                    "fullDescription": str(description.get("full") or short),
+                    "heroScreenshotAlt": f"{name} 产品主视觉",
+                    "heroScreenshotCaption": announcement,
+                    "featuresHeading": "产品规划",
+                    "featuresIntro": str(description.get("valueProposition") or short),
+                    "features": feature_map,
+                    "screenshotsHeading": "适用设备",
+                    "screenshotsIntro": "优先面向 Android 广告机，也支持电视、平板和旧 Android 手机等设备形态。",
+                    "workflowHeading": "工作方式",
+                    "workflowIntro": "从广告机播放到局域网浏览器控制，保持本地、简单、可靠。",
+                    "workflowSteps": workflow or ["安装 OfflineSignage", "通过局域网浏览器控制广告机", "关闭浏览器后继续独立播放"],
+                    "closingHeading": "关注 OfflineSignage",
+                    "closingCopy": announcement,
+                },
+                "featureDetails": {},
+                "privacy": {
+                    "pageTitle": f"隐私 - {name}", "metaDescription": f"{name} 的隐私信息。", "heading": "隐私",
+                    "lastUpdatedLabel": "最后更新", "content": [{"heading": "预发布说明", "paragraphs": ["产品仍在开发中，正式版本发布前会提供完整的隐私政策。"]}],
+                },
+                "support": {
+                    "pageTitle": f"支持 - {name}", "metaDescription": f"获取 {name} 的开发进展和联系信息。", "heading": "支持",
+                    "intro": announcement, "faqHeading": "常见问题", "faq": [], "contactHeading": "联系项目团队",
+                    "contactCopy": "如果你希望参与早期测试或提供广告机使用场景，请联系我们。", "contactCta": cta_label,
+                },
+            }
+        else:
+            localized = {
+                "locale": locale, "reviewStatus": "source",
+                "home": {
+                    "pageTitle": f"{name} - Android digital signage",
+                    "metaDescription": short,
+                    "category": category,
+                    "tagline": tagline,
+                    "shortDescription": short,
+                    "fullDescription": str(description.get("full") or short),
+                    "heroScreenshotAlt": f"{name} product visual",
+                    "heroScreenshotCaption": announcement,
+                    "featuresHeading": "Product roadmap",
+                    "featuresIntro": str(description.get("valueProposition") or short),
+                    "overviewHeading": "Built for screens that keep running",
+                    "overviewIntro": "From local playback to browser control, every part of OfflineSignage is shaped around dependable signage on the local network.",
+                    "features": feature_map,
+                    "screenshotsHeading": "Designed for signage devices",
+                    "screenshotsIntro": "Built first for Android digital signage players, with support planned for TVs, tablets, and older Android phones.",
+                    "workflowHeading": "How it works",
+                    "workflowIntro": "Local, simple, and reliable from the screen to the browser controller.",
+                    "workflowSteps": workflow or ["Install OfflineSignage", "Control the sign from a browser on the local network", "Close the browser and let the sign keep playing"],
+                    "closingHeading": "Follow OfflineSignage",
+                    "closingCopy": announcement,
+                },
+                "featureDetails": {},
+                "privacy": {
+                    "pageTitle": f"Privacy - {name}", "metaDescription": f"Privacy information for {name}.", "heading": "Privacy",
+                    "lastUpdatedLabel": "Last updated", "content": [{"heading": "Prelaunch status", "paragraphs": ["The product is in development. A complete privacy policy will be provided before release."]}],
+                },
+                "support": {
+                    "pageTitle": f"Support - {name}", "metaDescription": f"Development updates and contact information for {name}.", "heading": "Support",
+                    "intro": announcement, "faqHeading": "Common questions", "faq": [], "contactHeading": "Contact the project team",
+                    "contactCopy": "Contact us if you would like to join early testing or share a signage use case.", "contactCta": cta_label,
+                },
+            }
+        localized["home"]["deviceTypes"] = device_types
+        return merge(ui, localized)
+
     if base_language == "zh":
         privacy_content = (
             [{"heading": "数据处理说明", "paragraphs": practices}]
@@ -730,6 +840,7 @@ def resolve_asset(root: Path, value: object, label: str, required: bool = False)
 
 
 def copy_assets(app: dict, app_info_path: Path, stage: Path) -> dict:
+    prelaunch = str(app.get("releaseStage") or "app") == "prelaunch"
     config = app.get("assets") or {}
     root_value = str(config.get("root") or "app-launch-system/config/assets")
     root_path = Path(root_value)
@@ -756,8 +867,12 @@ def copy_assets(app: dict, app_info_path: Path, stage: Path) -> dict:
             copied[key] = relative.as_posix()
 
     screenshot_values = config.get("screenshots") or []
-    if not isinstance(screenshot_values, list) or not screenshot_values:
+    if not isinstance(screenshot_values, list):
+        raise GenerationError("assets.screenshots must be a list")
+    if not prelaunch and not screenshot_values:
         raise GenerationError("assets.screenshots must contain at least one real app screenshot")
+    if prelaunch and not config.get("coverImage"):
+        raise GenerationError("prelaunch requires assets.coverImage as the product visual")
     metadata = {}
     for item in app.get("screenshots") or []:
         if isinstance(item, dict) and isinstance(item.get("path"), str):
@@ -923,6 +1038,12 @@ def render_video_poster(video_url: str, locale: str, base_path: str, poster_path
 def render_overview_section(content: dict, locale: str, app_name: str) -> str:
     labels = OVERVIEW_LABELS.get(locale.split("-")[0].lower(), OVERVIEW_LABELS["en"])
     labels = {key: value.format(app=app_name) for key, value in labels.items()}
+    custom_heading = str(nested(content, "home.overviewHeading", "") or "").strip()
+    custom_intro = str(nested(content, "home.overviewIntro", "") or "").strip()
+    if custom_heading:
+        labels["heading"] = custom_heading
+    if custom_intro:
+        labels["intro"] = custom_intro
     translated = nested(content, "home.features", {}) or {}
     items = []
     for feature in list(translated.values())[:3]:
@@ -1102,6 +1223,13 @@ def render_screenshots(content: dict, screenshots: list[dict], base_path: str, u
             f'<figure><img src="{esc(base_path + screenshot["path"])}" alt="{esc(alt)}" loading="lazy">'
             f'<figcaption>{esc(caption)}</figcaption></figure>'
         )
+    if not figures:
+        device_types = [
+            str(item).strip()
+            for item in (nested(content, "home.deviceTypes", []) or [])
+            if str(item).strip()
+        ]
+        figures = [f'<div class="device-point"><h3>{esc(item)}</h3></div>' for item in device_types]
     return (
         '<section id="screenshots" class="screenshot-band" aria-labelledby="screenshots-title">'
         '<div class="section-heading"><h2 id="screenshots-title">'
@@ -1820,11 +1948,42 @@ def write_launch_artifacts(
 ) -> None:
     """Write editable ASO and SEO/GEO briefs plus an explicit release gate."""
     ready = content_ready_features(features)
+    prelaunch = str(app.get("releaseStage") or "app") == "prelaunch"
     ready_ids = {str(feature["id"]) for feature in ready}
     app_name = str(app.get("name") or "")
     google_play_url = str(app.get("googlePlayUrl") or "").strip()
     publisher = str(organization.get("legalName") or nested(app, "developer.name", "") or app_name)
     screenshots = assets.get("screenshots") or []
+
+    if prelaunch:
+        (stage / "seo-geo").mkdir(parents=True, exist_ok=True)
+        (stage / "seo-geo" / "audit.md").write_text(
+            "# SEO and GEO audit\n\nStatus: prelaunch\n\n"
+            "- Product claims are based on the product specification, not a release Android build.\n"
+            "- Review the product positioning and planned capabilities before publication.\n",
+            encoding="utf-8",
+        )
+        (stage / "launch-readiness.yaml").write_text(
+            yaml.safe_dump(
+                {
+                    "schemaVersion": "1.0",
+                    "releaseStage": "prelaunch",
+                    "website": {"status": "generated", "entry": "index.html", "output": "."},
+                    "content": {"status": "product-preview", "plannedCapabilities": len(features)},
+                    "seoGeo": {"status": "draft" if base_url else "blocked", "websiteUrl": base_url},
+                    "aso": {"status": "skipped", "reason": "Google Play listing is not part of prelaunch mode"},
+                    "publishReady": bool(base_url),
+                    "warnings": [
+                        "This is a prelaunch product website; Android app facts and store metadata are not verified.",
+                        *([] if base_url else ["websiteUrl is missing; canonical URLs and sitemap locations are blocked"]),
+                    ],
+                },
+                allow_unicode=True,
+                sort_keys=False,
+            ),
+            encoding="utf-8",
+        )
+        return
 
     aso_root = stage / "aso"
     seo_root = stage / "seo-geo"
@@ -2170,15 +2329,16 @@ def write_launch_manifest(app: dict, stage: Path) -> None:
         required_items.append("Confirm the public privacy policy URL and legal review")
     required_items = list(dict.fromkeys(required_items))
 
+    prelaunch = str(app.get("releaseStage") or "app") == "prelaunch"
     website_status = "completed" if readiness.get("website", {}).get("status") == "generated" else "blocked"
     seo_status = "completed" if readiness.get("seoGeo", {}).get("status") == "draft" else "blocked"
     aso_status = "completed" if readiness.get("aso", {}).get("status") == "draft" else "blocked"
     stages = {
         "analyzer": {
-            "status": "completed" if nested(app, "analysis.status") == "verified" else "blocked",
+            "status": "skipped" if prelaunch else ("completed" if nested(app, "analysis.status") == "verified" else "blocked"),
             "output": "app-info.yaml",
             "validatedAt": now,
-            "error": "" if nested(app, "analysis.status") == "verified" else "analysis.status is not verified",
+            "error": "" if prelaunch or nested(app, "analysis.status") == "verified" else "analysis.status is not verified",
         },
         "website": {
             "status": website_status,
@@ -2187,25 +2347,25 @@ def write_launch_manifest(app: dict, stage: Path) -> None:
             "error": "" if website_status == "completed" else "website generation did not complete",
         },
         "seoGeo": {
-            "status": seo_status,
+            "status": "completed" if prelaunch and readiness.get("seoGeo", {}).get("status") == "draft" else seo_status,
             "output": "seo-geo/",
             "validatedAt": now,
-            "error": "" if seo_status == "completed" else "websiteUrl is missing",
+            "error": "" if (prelaunch and readiness.get("seoGeo", {}).get("status") == "draft") or seo_status == "completed" else "websiteUrl is missing",
         },
         "aso": {
-            "status": aso_status,
+            "status": "skipped" if prelaunch else aso_status,
             "output": "aso/",
             "validatedAt": now,
-            "error": "" if aso_status == "completed" else "googlePlayUrl is missing",
+            "error": "" if prelaunch or aso_status == "completed" else "googlePlayUrl is missing",
         },
         "blog": {
-            "status": "completed",
+            "status": "skipped" if prelaunch else "completed",
             "output": "blog/",
             "validatedAt": now,
             "error": "",
         },
     }
-    all_completed = all(stage_data["status"] == "completed" for stage_data in stages.values())
+    all_completed = all(stage_data["status"] in {"completed", "skipped"} for stage_data in stages.values())
     manifest = {
         "schemaVersion": "1.0",
         "projectPath": str(app.get("sourceProject") or ""),
@@ -2233,11 +2393,16 @@ def render_site(
     locales_root: Path,
     stage: Path,
 ) -> list[str]:
-    if nested(app, "analysis.status") != "verified":
+    prelaunch = str(app.get("releaseStage") or "app") == "prelaunch"
+    if not prelaunch and nested(app, "analysis.status") != "verified":
         raise GenerationError("analysis.status must be verified before public website generation")
-    features = verified_features(app)
+    features = prelaunch_features(app) if prelaunch else verified_features(app)
     if not features:
-        raise GenerationError("at least one feature with confidence: verified and evidence is required")
+        raise GenerationError(
+            "prelaunch requires at least one planned capability"
+            if prelaunch
+            else "at least one feature with confidence: verified and evidence is required"
+        )
 
     source, targets, contents = resolve_locales(app, locales_root, features)
     locales = [source, *targets]
@@ -2264,9 +2429,9 @@ def render_site(
     indexnow_file = indexnow_settings(app)
     verification_files = [item for item in (search_console_file, bing_webmaster_file) if item]
     base_url = website_url.rstrip("/") + "/" if website_url else ""
-    package_name = str(app.get("packageName") or "")
+    package_name = str(app.get("packageName") or app.get("name") or "offline-signage")
     app_name = str(app.get("name") or "")
-    version_name = str(nested(app, "version.name", "") or "")
+    version_name = str(nested(app, "version.name", "") or ("开发中" if prelaunch else ""))
     developer_name = str(organization.get("legalName") or nested(app, "developer.name", "") or app_name)
     support_email = str(
         nested(app, "support.email", "")
@@ -2285,10 +2450,10 @@ def render_site(
     copyright_text += esc(nested(contents[source], "common.rights"))
 
     icon_relative = assets.get("icon")
-    hero_relative = assets.get("coverImage") or assets["screenshots"][0]["path"]
+    hero_relative = assets.get("coverImage") or (assets["screenshots"][0]["path"] if assets.get("screenshots") else "")
     social_relative = assets.get("socialImage")
     generated_pages: list[str] = []
-    has_blog = bool(content_ready_features(features))
+    has_blog = bool(content_ready_features(features)) and not prelaunch
 
     for locale in locales:
         content = contents[locale]
@@ -2300,14 +2465,26 @@ def render_site(
             if icon_relative
             else ""
         )
-        primary_action = (
-            f'<a class="primary-action google-play-action" href="{esc(app["googlePlayUrl"])}">'
-            f'<img class="google-play-badge" src="{esc(base_path + str(assets["googlePlayBadge"]))}" '
-            f'alt="{esc(nested(content, "common.googlePlayCta"))}" width="160" height="62"></a>'
-            if app.get("googlePlayUrl")
-            else f'<span class="availability-state">{esc(nested(content, "common.availability"))}</span>'
-        )
-        screenshot = assets["screenshots"][0]
+        prelaunch_cta = nested(app, "prelaunch.primaryCta", {}) or {}
+        prelaunch_url = str(prelaunch_cta.get("url") or "").strip() if isinstance(prelaunch_cta, dict) else ""
+        prelaunch_label = str(
+            prelaunch_cta.get("label") or ("申请内测" if locale.startswith("zh") else "Join early access")
+        ) if isinstance(prelaunch_cta, dict) else ("申请内测" if locale.startswith("zh") else "Join early access")
+        if prelaunch:
+            primary_action = (
+                f'<a class="primary-action" href="{esc(prelaunch_url)}">{esc(prelaunch_label)}</a>'
+                if prelaunch_url
+                else f'<span class="availability-state">{esc(prelaunch_label)}</span>'
+            )
+        else:
+            primary_action = (
+                f'<a class="primary-action google-play-action" href="{esc(app["googlePlayUrl"])}">'
+                f'<img class="google-play-badge" src="{esc(base_path + str(assets["googlePlayBadge"]))}" '
+                f'alt="{esc(nested(content, "common.googlePlayCta"))}" width="160" height="62"></a>'
+                if app.get("googlePlayUrl")
+                else f'<span class="availability-state">{esc(nested(content, "common.availability"))}</span>'
+            )
+        screenshot = assets["screenshots"][0] if assets.get("screenshots") else {"path": hero_relative}
         hero_caption = (
             screenshot.get("caption") if locale == source else ""
         ) or nested(content, "home.heroScreenshotCaption")
@@ -2392,10 +2569,9 @@ def render_site(
 
         software_data = {
             "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
+            "@type": "Product" if prelaunch else "SoftwareApplication",
             "name": app_name,
-            "applicationCategory": str(app.get("category") or "Application"),
-            "operatingSystem": "Android",
+            "category": str(app.get("category") or "Product"),
             "description": str(nested(content, "home.metaDescription")),
             "featureList": [
                 str(item.get("name") or "")
@@ -2403,7 +2579,9 @@ def render_site(
                 if isinstance(item, dict) and str(item.get("name") or "").strip()
             ],
         }
-        if app.get("googlePlayUrl"):
+        if not prelaunch:
+            software_data["operatingSystem"] = "Android"
+        if app.get("googlePlayUrl") and not prelaunch:
             software_data["downloadUrl"] = str(app["googlePlayUrl"])
         if base_url:
             software_data["url"] = page_url(base_url, locale, source, "index.html")
@@ -2538,6 +2716,8 @@ def render_site(
             "COMPANY_CONTACT_ACTION": (
                 f'<a class="primary-action" href="mailto:{esc(organization.get("email") or support_email)}">'
                 f'{esc(about_labels["contactCta"])}</a>'
+                if organization.get("email") or support_email
+                else ""
             ),
         })
         (locale_dir / "about.html").write_text(render_template("about.html", about_values), encoding="utf-8")
@@ -2546,42 +2726,19 @@ def render_site(
             for page in ("index.html", "privacy.html", "support.html", "about.html")
         )
 
-    generated_pages.extend(
-        render_feature_pages(
-            app,
-            organization,
-            source,
-            locales,
-            contents,
-            features,
-            assets,
-            stage,
-            base_url,
-            theme_color,
-            aliases,
-            auto_detect,
-            remember_selection,
-            copyright_text,
+    if not prelaunch:
+        generated_pages.extend(
+            render_feature_pages(
+                app, organization, source, locales, contents, features, assets, stage,
+                base_url, theme_color, aliases, auto_detect, remember_selection, copyright_text,
+            )
         )
-    )
-
-    generated_pages.extend(
-        render_blog(
-            app,
-            organization,
-            source,
-            locales,
-            contents,
-            features,
-            assets,
-            stage,
-            base_url,
-            theme_color,
-            aliases,
-            auto_detect,
-            remember_selection,
+        generated_pages.extend(
+            render_blog(
+                app, organization, source, locales, contents, features, assets, stage,
+                base_url, theme_color, aliases, auto_detect, remember_selection,
+            )
         )
-    )
 
     manifest_icons = []
     if icon_relative:
@@ -2796,7 +2953,11 @@ def main() -> int:
     parser.add_argument("--app-info", type=Path, default=PROJECT_ROOT / "app-info.yaml")
     parser.add_argument("--output", type=Path, default=PROJECT_ROOT)
     parser.add_argument("--locales", type=Path, default=PROJECT_ROOT / "content" / "locales")
-    parser.add_argument("--organization", type=Path, default=SYSTEM_ROOT / "config" / "organization.yaml")
+    parser.add_argument(
+        "--organization",
+        type=Path,
+        default=SYSTEM_ROOT / "config" / "organization.yaml",
+    )
     parser.add_argument("--force", action="store_true", help="overwrite only files generated by the staged website")
     args = parser.parse_args()
     try:

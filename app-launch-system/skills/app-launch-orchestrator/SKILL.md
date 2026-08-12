@@ -13,21 +13,22 @@ Run all deterministic commands from the `app-launch-system` root through `script
 
 ## Input resolution
 
-1. Resolve the absolute Android project path from explicit user input. The source project may be outside the skill directory.
+1. Resolve the absolute Android project path from explicit user input when `releaseStage: app`. For `releaseStage: prelaunch`, a product specification and product assets are sufficient; do not require an Android project.
 2. Find `app-info.yaml` in this order: explicit user path, `<project-root>/app-info.yaml`, then the Android source project only when the user explicitly asks for it.
 3. If multiple candidates exist, report them and ask for selection.
 4. If no valid metadata exists, run `$app-analyzer-skill` first.
 
 ## Task routing
 
-- Analysis or metadata refresh: `$app-analyzer-skill`
+- Prelaunch product site: `$website-generator-skill` using `releaseStage: prelaunch`
+- Analysis or metadata refresh for a release app: `$app-analyzer-skill`
 - Official website: `$website-generator-skill`
 - Search and AI-answer assets: `$seo-geo-generator-skill`
 - Google Play listing: `$aso-generator-skill`
 - Editorial content: `$blog-generator-skill`
 - Complete launch package: run analyzer if needed, then website, SEO/GEO, ASO, and blog in that order.
 
-For the website stage, prepare all required `content/locales/<locale>.yaml` files and run `python scripts/launch.py generate-website` from the `app-launch-system` root. The command resolves its defaults to the parent project root. Use `--force` only after the user approves replacing existing generated website files.
+For the website stage, prepare all required `content/locales/<locale>.yaml` files and run `python scripts/launch.py generate-website` from the `app-launch-system` root. The command resolves its defaults to the parent project root. Use `--force` only after the user approves replacing existing generated website files. In prelaunch mode, use `plannedCapabilities`, `prelaunch`, and `assets.coverImage`; do not invent Android source evidence or store metadata.
 
 ## Shared output contract
 
@@ -58,7 +59,7 @@ Do not delete existing user files. Before overwriting an existing artifact, repo
 
 Create or update `launch-manifest.yaml` after every stage. Each stage must be one of `pending`, `running`, `completed`, `blocked`, or `skipped`. Set `blocked` when validation fails or required user information is missing. Keep the last error and validation timestamp.
 
-Do not report the package as publishable unless `app-info.yaml` is valid, `launch-readiness.yaml` reports `publishReady: true`, all requested stages are completed, target locales are reviewed, and no blocking unknowns remain. A missing `websiteUrl` blocks SEO/GEO readiness; a missing `googlePlayUrl` blocks ASO readiness.
+Do not report a release app package as publishable unless `app-info.yaml` is valid, `launch-readiness.yaml` reports `publishReady: true`, all requested stages are completed, target locales are reviewed, and no blocking unknowns remain. A prelaunch site may be ready for publication with `aso` skipped, but it must remain explicitly labeled as a product preview and must not claim an available Android download.
 
 ## Handoff
 

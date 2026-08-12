@@ -13,6 +13,7 @@ PACKAGE = re.compile(r"^[a-zA-Z_][\w]*(?:\.[a-zA-Z_][\w]*)+$")
 URL = re.compile(r"^https?://[^\s]+$")
 TOKEN = re.compile(r"\{\{[^{}]+\}\}")
 ANALYSIS_STATUSES = {"draft", "verified", "blocked"}
+RELEASE_STAGES = {"app", "prelaunch"}
 
 
 def scalar(text: str, key: str) -> str | None:
@@ -63,20 +64,27 @@ def errors_for(path: Path) -> list[str]:
     if TOKEN.search(text):
         errors.append("contains unresolved template token(s)")
 
-    for key in ("schemaVersion", "sourceProject", "name", "packageName"):
+    release_stage = scalar(text, "releaseStage") or "app"
+    if release_stage not in RELEASE_STAGES:
+        errors.append(f"releaseStage must be one of: {', '.join(sorted(RELEASE_STAGES))}")
+
+    required_scalars = ("schemaVersion", "name") if release_stage == "prelaunch" else ("schemaVersion", "sourceProject", "name", "packageName")
+    for key in required_scalars:
         if scalar(text, key) is None:
             errors.append(f"missing required scalar: {key}")
 
     analysis = section(text, "analysis")
-    if not analysis:
+    if not analysis and release_stage == "app":
         errors.append("missing required mapping: analysis")
     else:
-        analysis_status = scalar(analysis, "status")
-        if analysis_status not in ANALYSIS_STATUSES:
-            errors.append(f"analysis.status must be one of: {', '.join(sorted(ANALYSIS_STATUSES))}")
-        for key in ("analyzerVersion", "selectedModule", "selectedVariant"):
-            if scalar(analysis, key) is None:
-                errors.append(f"missing analysis.{key}")
+        if analysis:
+            analysis_status = scalar(analysis, "status")
+            if analysis_status not in ANALYSIS_STATUSES:
+                errors.append(f"analysis.status must be one of: {', '.join(sorted(ANALYSIS_STATUSES))}")
+            if release_stage == "app":
+                for key in ("analyzerVersion", "selectedModule", "selectedVariant"):
+                    if scalar(analysis, key) is None:
+                        errors.append(f"missing analysis.{key}")
 
     package = scalar(text, "packageName")
     if package and not PACKAGE.fullmatch(package):
@@ -91,15 +99,19 @@ def errors_for(path: Path) -> list[str]:
 
     feature_block = section(text, "features")
     feature_names = re.findall(r"(?m)^\s*-\s+id:\s*['\"]?([^'\"\s]+)", feature_block)
-    if not feature_names:
+    planned_block = section(text, "plannedCapabilities")
+    planned_items = re.findall(r"(?m)^\s*-\s+(.+?)\s*$", planned_block)
+    if release_stage == "app" and not feature_names:
         errors.append("features must contain at least one item")
-    if any(name == "" for name in feature_names):
+    if release_stage == "app" and any(name == "" for name in feature_names):
         errors.append("features contains an empty example item")
-    if re.search(r"(?m)^\s*-\s+id:\s*['\"]?['\"]?\s*$", feature_block):
+    if release_stage == "app" and re.search(r"(?m)^\s*-\s+id:\s*['\"]?['\"]?\s*$", feature_block):
         errors.append("features contains a blank id")
     evidence_entries = len(re.findall(r"(?m)^\s+evidence:\s*$", feature_block))
-    if evidence_entries < len(feature_names):
+    if release_stage == "app" and evidence_entries < len(feature_names):
         errors.append("every feature must include an evidence list")
+    if release_stage == "prelaunch" and not feature_names and not planned_items:
+        errors.append("prelaunch requires plannedCapabilities or features")
 
     source_project = scalar(text, "sourceProject")
     project: Path | None = None
@@ -109,6 +121,8 @@ def errors_for(path: Path) -> list[str]:
             project = (path.parent / project).resolve()
         if not project.exists():
             errors.append(f"sourceProject does not exist: {source_project}")
+    elif release_stage == "app":
+        errors.append("sourceProject is required for releaseStage: app")
 
     language_block = section(text, "languages")
     for key in ("source",):

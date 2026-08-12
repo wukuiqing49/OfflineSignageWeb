@@ -9,14 +9,14 @@ Build the actual product website from verified metadata and real app visuals. Do
 
 ## Inputs
 
-Require `app-info.yaml` and the absolute Android project path recorded in `sourceProject`. Accept an output directory, preferred framework, domain, and target locales. Default website output to `<project-root>`, where `<project-root>` is the directory containing `app-launch-system`, and use a dependency-free static site based on `../../templates/website-template/`; reuse an existing project framework only when requested or already established.
+Require `app-info.yaml`. For `releaseStage: app`, also require the absolute Android project path recorded in `sourceProject`; for `releaseStage: prelaunch`, use product specification fields and require `assets.coverImage` instead of Android source evidence. Accept an output directory, preferred framework, domain, and target locales. Default website output to `<project-root>`, where `<project-root>` is the directory containing `app-launch-system`, and use a dependency-free static site based on `../../templates/website-template/`; reuse an existing project framework only when requested or already established.
 
 ## Workflow
 
-1. Read all of `app-info.yaml`. Stop and report schema errors or a missing product name, description, source locale, and at least one verified feature. Resolve website locales from explicit user input, then `languages.websiteTargets`, then `languages.targets`, then verified `languages.availableInApp`; website translation targets may be broader than App-internal locales when they are explicitly configured and clearly marked for human review.
+1. Read all of `app-info.yaml`. Stop and report schema errors or missing product name, description, source locale, and either one verified feature (`app`) or one planned capability (`prelaunch`). Resolve website locales from explicit user input, then `languages.websiteTargets`, then `languages.targets`, then verified `languages.availableInApp`; website translation targets may be broader than App-internal locales when they are explicitly configured and clearly marked for human review.
 2. From the `app-launch-system` root, run `python scripts/launch.py validate-app-info <app-info.yaml>` and stop on errors.
 3. Read [references/site-contract.md](references/site-contract.md).
-4. Inspect every referenced logo and screenshot. Use actual app screens as primary visuals; do not invent UI or use unrelated stock images.
+4. Inspect every referenced logo and screenshot. Use actual app screens as primary visuals for `app`; use an explicit product visual for `prelaunch`. Do not invent UI or use unrelated stock images.
 5. Inspect `<app-launch-system>/config/assets/` when present. Use explicit `assets.icon`, `assets.coverImage`, `assets.socialImage`, and every item in `assets.screenshots` first; fall back to verified Android project assets only when these fields are empty. Copy selected assets into `<project-root>/assets` and preserve their purpose. Never assume screenshots is singular.
 6. Prepare one complete `<project-root>/content/locales/<locale>.yaml` for every non-source locale, following `../../templates/website-template/locale-content.yaml`. Translate both `home.features` and every content-ready feature's structured `featureDetails`. A locale may explicitly set `inheritFrom: "en-US"` only as a machine-draft bootstrap; the generator must preserve the inherited facts, mark the locale as requiring review, and never treat it as publishable translation. Never silently copy source text. A source-locale file is optional for `en` and `zh`; provide a complete source-locale file for other source languages.
 7. From `<project-root>`, run `python app-launch-system/scripts/launch.py generate-website`. This renders into a temporary directory, validates it, then writes `index.html` and the other public files directly to `<project-root>`. It does not create `launch-output/` or another wrapper. Existing website files are protected unless the user explicitly approves `--force`.
@@ -33,9 +33,9 @@ The generator also writes `aso/`, `seo-geo/`, and `launch-readiness.yaml`. Treat
 - Make the app name and actual interface visible in the first viewport.
 - Use `assets.coverImage` for the homepage hero when supplied; use `assets.socialImage` for Open Graph when supplied. Never use a phone screenshot as a social image if an explicit social image exists.
 - State a literal value proposition in the supporting copy and keep headings specific.
-- Tie each feature claim to `features[].evidence`.
-- Generate a feature page and blog only when structured feature details pass the content-ready gate. Keep incomplete verified features as homepage summaries and report them in `launch-readiness.yaml`.
-- Link the primary action to `googlePlayUrl`; render a non-clickable availability state when the URL is unknown.
+- Tie each release-app feature claim to `features[].evidence`; planned prelaunch capabilities must remain labeled as planned.
+- Generate a feature page and blog only when structured feature details pass the content-ready gate in `app`. Keep incomplete verified features as homepage summaries; `prelaunch` keeps planned capabilities on the homepage only.
+- Link the primary action to `googlePlayUrl` for `app`; use `prelaunch.primaryCta` for `prelaunch` and render a non-clickable availability state when its URL is unknown.
 - Never emit an empty or placeholder `href` for an unknown `googlePlayUrl`; use visible availability text instead.
 - Include privacy and support pages. Include terms only when legal text or a policy owner is provided.
 - Do not fabricate reviews, user counts, ratings, awards, certifications, customers, pricing, guarantees, or data practices.

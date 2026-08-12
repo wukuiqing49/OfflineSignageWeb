@@ -1,0 +1,20 @@
+schemaVersion: '1.0'
+releaseStage: prelaunch
+website:
+  status: generated
+  entry: index.html
+  output: .
+content:
+  status: product-preview
+  plannedCapabilities: 5
+seoGeo:
+  status: blocked
+  websiteUrl: ''
+aso:
+  status: skipped
+  reason: Google Play listing is not part of prelaunch mode
+publishReady: false
+warnings:
+- This is a prelaunch product website; Android app facts and store metadata are not
+  verified.
+- websiteUrl is missing; canonical URLs and sitemap locations are blocked

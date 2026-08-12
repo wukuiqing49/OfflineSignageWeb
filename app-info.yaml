@@ -1,0 +1,105 @@
+schemaVersion: "1.0"
+releaseStage: "prelaunch"
+name: "OfflineSignage"
+category: "Android digital signage software"
+
+description:
+  short: "Local-first digital signage for Android advertising players."
+  full: "OfflineSignage turns Android advertising players into reliable digital signs that can play local media and be controlled from a browser on the same network."
+  valueProposition: "Keep signage simple, local, and reliable without a cloud account."
+
+targetUsers:
+  - "Small businesses running in-store displays"
+  - "Schools, events, and offices with Android advertising players"
+  - "Teams reusing Android TVs, tablets, and older phones as screens"
+useCases:
+  - "Storefront and menu boards"
+  - "Reception, lobby, and event displays"
+  - "Local network signage across multiple screens"
+
+plannedCapabilities:
+  - id: "local-media-playback"
+    name: "Local media playback"
+    description: "Play images, videos, web content, and playlists directly on the Android signage device."
+  - id: "browser-control"
+    name: "Browser control on the local network"
+    description: "Manage playback from a browser without a mandatory cloud account or remote service."
+  - id: "reliable-recovery"
+    name: "Reliable playback and recovery"
+    description: "Keep the screen awake, resume after reboot, and continue from locally cached resources."
+  - id: "multi-device-sync"
+    name: "Multi-device discovery and sync"
+    description: "Discover nearby signage players and synchronize resources and playlists across screens."
+  - id: "signage-ready-display"
+    name: "Signage-ready display modes"
+    description: "Use fullscreen playback, orientation control, volume and mute settings, and a focused kiosk workflow."
+
+brand:
+  productName: "OfflineSignage"
+  tagline: "Digital signage that stays local."
+  voice:
+    - "Practical"
+    - "Reliable"
+    - "Clear"
+  colors:
+    - "#0f766e"
+    - "#f4b942"
+    - "#f7f4ed"
+
+assets:
+  root: "app-launch-system/config/assets"
+  icon: "offline-signage-icon.png"
+  coverImage: "offline-signage-hero.png"
+  socialImage: "offline-signage-hero.png"
+  screenshots: []
+
+languages:
+  source: "en-US"
+  targets: []
+  availableInApp: []
+  routing:
+    autoDetect: true
+    rememberSelection: true
+    sourceAtRoot: true
+    aliases: {}
+
+websiteUrl: ""
+searchConsole:
+  verificationToken: ""
+  verificationFileName: "google939576fea7c9232c.html"
+  verificationContent: "google-site-verification: google939576fea7c9232c.html"
+bingWebmaster:
+  verificationToken: ""
+  verificationFileName: "BingSiteAuth.xml"
+  verificationContent: |
+    <?xml version="1.0"?>
+    <users>
+      <user>DC4AB582C527A7A168FC391B84B8995E</user>
+    </users>
+indexNow:
+  key: ""
+  keyFileName: ""
+
+prelaunch:
+  status: "in-development"
+  primaryCta:
+    label: "See the product roadmap"
+    url: "#features"
+  announcement: "OfflineSignage is in development. The first release is focused on dependable Android signage for local networks."
+  workflow:
+    - "Install OfflineSignage on an Android advertising player"
+    - "Open the local control page from a browser"
+    - "Load media, build a playlist, and start playback"
+    - "Let the player continue locally after the browser closes"
+  deviceTypes:
+    - "Android advertising players"
+    - "Android TVs and TV boxes"
+    - "Android tablets"
+    - "Older Android phones"
+
+support:
+  email: ""
+  url: ""
+privacy:
+  policyUrl: ""
+  dataPractices: []

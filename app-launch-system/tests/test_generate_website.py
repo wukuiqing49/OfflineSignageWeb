@@ -25,6 +25,7 @@ class GenerateWebsiteTests(unittest.TestCase):
         self.inputs = self.root / "site-input"
         (self.inputs / "screenshots").mkdir(parents=True)
         (self.inputs / "icon.png").write_bytes(b"not-a-real-png-but-a-stable-test-fixture")
+        (self.inputs / "cover.png").write_bytes(b"stable-cover")
         (self.inputs / "screenshots" / "home.png").write_bytes(b"stable-screenshot")
         self.locales = self.root / "content" / "locales"
         self.locales.mkdir(parents=True)
@@ -248,6 +249,63 @@ class GenerateWebsiteTests(unittest.TestCase):
         self.assertIn("visual notes Android", keyword_map)
         self.assertNotIn("field inspection app", keyword_map)
         self.assertFalse(any("{{" in path.read_text(encoding="utf-8") for path in files if path.suffix == ".html"))
+
+    def test_prelaunch_generation_uses_product_visual_without_app_evidence(self) -> None:
+        data = {
+            "schemaVersion": "1.0",
+            "releaseStage": "prelaunch",
+            "name": "OfflineSignage",
+            "category": "Android digital signage",
+            "description": {
+                "short": "Offline digital signage for Android advertising players.",
+                "full": "Control Android advertising players from a browser on the local network.",
+                "valueProposition": "Local, simple, and reliable digital signage without a cloud account.",
+            },
+            "plannedCapabilities": [
+                {"id": "local-playback", "name": "Local playback", "description": "Play images and videos on the signage device."},
+                {"id": "browser-control", "name": "Browser control", "description": "Control the player from a browser on the local network."},
+            ],
+            "brand": {"tagline": "Android signage, built local-first", "colors": ["#126e5a"]},
+            "assets": {
+                "root": "site-input",
+                "icon": "icon.png",
+                "coverImage": "cover.png",
+                "socialImage": "",
+                "screenshots": [],
+            },
+            "languages": {
+                "source": "en-US",
+                "targets": [],
+                "routing": {"autoDetect": True, "rememberSelection": True, "sourceAtRoot": True, "aliases": {}},
+            },
+            "prelaunch": {
+                "status": "in-development",
+                "primaryCta": {"label": "Join early access", "url": "mailto:hello@example.test"},
+                "announcement": "OfflineSignage is in development.",
+                "workflow": ["Install the player", "Control it from a browser", "Keep playing after the browser closes"],
+                "deviceTypes": ["Android digital signage players", "Android TVs", "Android tablets", "Older Android phones"],
+            },
+            "websiteUrl": "",
+            "support": {"email": "hello@example.test"},
+            "privacy": {"policyUrl": "", "dataPractices": []},
+        }
+        app_info = self.root / "prelaunch-app-info.yaml"
+        app_info.write_text(yaml.safe_dump(data, sort_keys=False), encoding="utf-8")
+        locales, files = generate(app_info, self.output, self.locales)
+        self.assertEqual(["en-US"], locales)
+        index = (self.output / "index.html").read_text(encoding="utf-8")
+        self.assertIn("OfflineSignage", index)
+        self.assertIn("Android digital signage players", index)
+        self.assertIn("mailto:hello@example.test", index)
+        self.assertIn('"@type":"Product"', index)
+        self.assertNotIn("Google Play", index)
+        self.assertFalse((self.output / "blog").exists())
+        self.assertFalse((self.output / "features").exists())
+        self.assertFalse((self.output / "aso").exists())
+        self.assertTrue((self.output / "assets" / "cover.png").is_file())
+        readiness = yaml.safe_load((self.output / "launch-readiness.yaml").read_text(encoding="utf-8"))
+        self.assertEqual("prelaunch", readiness["releaseStage"])
+        self.assertEqual("skipped", readiness["aso"]["status"])
 
     def test_google_play_and_youtube_links_render(self) -> None:
         data = self.app_data()

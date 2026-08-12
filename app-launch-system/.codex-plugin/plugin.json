@@ -1,7 +1,7 @@
 {
   "name": "app-launch-system",
-  "version": "0.2.0+codex.20260808025445",
-  "description": "Generate a multilingual static app website from an Android project path.",
+  "version": "0.2.0+codex.20260812035918",
+  "description": "Generate a prelaunch product site or multilingual static app website with an evidence-aware Android launch workflow.",
   "author": {
     "name": "Local Workspace"
   },
@@ -18,7 +18,7 @@
   "interface": {
     "displayName": "Android App Launch System",
     "shortDescription": "Turn an Android project into a static website",
-    "longDescription": "Analyze an Android project from a local path and generate a multilingual, Cloudflare Pages-ready static app website with real screenshots.",
+    "longDescription": "Generate a Cloudflare Pages-ready prelaunch product site from planned product facts, or analyze an Android project and generate a multilingual app website with real screenshots.",
     "developerName": "Local Workspace",
     "category": "Productivity",
     "capabilities": [
@@ -28,6 +28,7 @@
       "Validate"
     ],
     "defaultPrompt": [
+      "Generate a prelaunch product site from this product specification.",
       "Analyze this Android project path and generate its static app website.",
       "Generate a multilingual Cloudflare Pages-ready app website.",
       "Refresh the static website from the latest Android project and screenshots."

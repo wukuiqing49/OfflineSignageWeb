@@ -1,0 +1,17 @@
+{
+  "name": "OfflineSignage",
+  "short_name": "OfflineSignage",
+  "description": "Local-first digital signage for Android advertising players.",
+  "lang": "en-US",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#0f766e",
+  "icons": [
+    {
+      "src": "assets/icon.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
