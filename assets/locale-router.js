@@ -71,7 +71,12 @@
   }
 
   function destinationUrl(url) {
-    const destination = new URL(url, root.location.href);
+    let baseHref = root.location.href;
+    const pathname = root.location.pathname || "/";
+    if (!pathname.endsWith("/") && !pathname.split("/").pop().includes(".")) {
+      baseHref = new URL(pathname + "/", root.location.origin || "http://localhost").href;
+    }
+    const destination = new URL(url, baseHref);
     if (!destination.search && root.location.search) destination.search = root.location.search;
     if (!destination.hash && root.location.hash) destination.hash = root.location.hash;
     return destination.href;

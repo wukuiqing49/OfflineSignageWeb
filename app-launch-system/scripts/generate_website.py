@@ -1231,9 +1231,7 @@ def page_url(base_url: str, locale: str, source: str, page: str) -> str:
     return urljoin(base_url, page_relative(locale, source, page))
 
 
-def route_url(current: str, target: str, source: str, page: str, base_url: str) -> str:
-    if base_url:
-        return page_url(base_url, target, source, page)
+def route_url(current: str, target: str, source: str, page: str, base_url: str = "") -> str:
     if current == source:
         if target == source:
             return "./" if page == "index.html" else page
