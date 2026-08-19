@@ -1,6 +1,18 @@
 User-agent: *
 Allow: /
 
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
@@ -17,9 +29,6 @@ User-agent: Google-Extended
 Allow: /
 
 User-agent: Applebot-Extended
-Allow: /
-
-User-agent: Bingbot
 Allow: /
 
 Sitemap: /sitemap.xml

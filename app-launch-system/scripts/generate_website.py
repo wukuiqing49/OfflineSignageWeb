@@ -2920,13 +2920,16 @@ def render_site(
     (stage / "sitemap.xml").write_text(sitemap, encoding="utf-8")
     robots = (
         "User-agent: *\nAllow: /\n\n"
+        "User-agent: Bingbot\nAllow: /\n\n"
+        "User-agent: msnbot\nAllow: /\n\n"
+        "User-agent: BingPreview\nAllow: /\n\n"
+        "User-agent: Googlebot\nAllow: /\n\n"
         "User-agent: GPTBot\nAllow: /\n\n"
         "User-agent: ChatGPT-User\nAllow: /\n\n"
         "User-agent: PerplexityBot\nAllow: /\n\n"
         "User-agent: ClaudeBot\nAllow: /\n\n"
         "User-agent: Google-Extended\nAllow: /\n\n"
         "User-agent: Applebot-Extended\nAllow: /\n\n"
-        "User-agent: Bingbot\nAllow: /\n\n"
     )
     if base_url:
         robots += f"Sitemap: {urljoin(base_url, 'sitemap.xml')}\n"
@@ -2983,37 +2986,50 @@ def render_site(
     if indexnow_file:
         indexnow_name, indexnow_content = indexnow_file
         (stage / indexnow_name).write_text(indexnow_content, encoding="utf-8")
-    if verification_files:
-        # Cloudflare Pages Clean URLs redirects .html paths before _redirects runs.
-        verification_routes = {
-            "/" + file_name: {
-                "content": file_content,
-                "contentType": verification_content_type(file_name),
-            }
-            for file_name, file_content in verification_files
+    verification_routes = {
+        "/" + file_name: {
+            "content": file_content,
+            "contentType": verification_content_type(file_name),
         }
-        worker = (
-            "const verificationRoutes = "
-            + json.dumps(verification_routes, ensure_ascii=False)
-            + ";\n\n"
-            "export default {\n"
-            "  async fetch(request, env) {\n"
-            "    const url = new URL(request.url);\n"
-            "    const verification = verificationRoutes[url.pathname];\n"
-            "    if (verification) {\n"
-            "      return new Response(verification.content, {\n"
-            "        status: 200,\n"
-            "        headers: {\n"
-            "          \"content-type\": verification.contentType,\n"
-            "          \"cache-control\": \"no-store\"\n"
-            "        }\n"
-            "      });\n"
-            "    }\n"
-            "    return env.ASSETS.fetch(request);\n"
-            "  }\n"
-            "};\n"
-        )
-        (stage / "_worker.js").write_text(worker, encoding="utf-8")
+        for file_name, file_content in verification_files
+    }
+    if indexnow_file:
+        indexnow_name, indexnow_content = indexnow_file
+        verification_routes["/" + indexnow_name] = {
+            "content": indexnow_content,
+            "contentType": "text/plain; charset=UTF-8",
+        }
+    verification_routes["/robots.txt"] = {
+        "content": robots,
+        "contentType": "text/plain; charset=UTF-8",
+    }
+    verification_routes["/sitemap.xml"] = {
+        "content": sitemap,
+        "contentType": "application/xml; charset=UTF-8",
+    }
+    worker = (
+        "const verificationRoutes = "
+        + json.dumps(verification_routes, ensure_ascii=False)
+        + ";\n\n"
+        "export default {\n"
+        "  async fetch(request, env) {\n"
+        "    const url = new URL(request.url);\n"
+        "    const verification = verificationRoutes[url.pathname];\n"
+        "    if (verification) {\n"
+        "      return new Response(verification.content, {\n"
+        "        status: 200,\n"
+        "        headers: {\n"
+        "          \"content-type\": verification.contentType,\n"
+        "          \"cache-control\": \"no-cache, no-store, must-revalidate\",\n"
+        "          \"access-control-allow-origin\": \"*\"\n"
+        "        }\n"
+        "      });\n"
+        "    }\n"
+        "    return env.ASSETS.fetch(request);\n"
+        "  }\n"
+        "};\n"
+    )
+    (stage / "_worker.js").write_text(worker, encoding="utf-8")
     excluded_roots = {"content", "aso", "seo-geo"}
     excluded_files = {"launch-readiness.yaml", "launch-manifest.yaml"}
     public_files = sorted(
