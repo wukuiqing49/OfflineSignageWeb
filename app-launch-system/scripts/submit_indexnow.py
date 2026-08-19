@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 SITEMAP_PATH = ROOT / "sitemap.xml"
-KEY = "d8f4c2e61a7b40989f3a5e1289bc704a"
+KEY = "74b1b5e7ac934edda675f12ab12291fa"
 
 def get_urls(host: str):
     if not SITEMAP_PATH.exists():
