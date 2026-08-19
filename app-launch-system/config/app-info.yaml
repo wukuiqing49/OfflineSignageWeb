@@ -1,130 +1,142 @@
-schemaVersion: "1.0"
-releaseStage: "app"
-sourceProject: ""
-analyzedAt: ""
-analysis:
-  status: "draft"
-  analyzerVersion: "1.0"
-  selectedModule: ""
-  selectedVariant: ""
-  validatedAt: ""
-  errors: []
-  warnings: []
-
-name: ""
-packageName: ""
-version:
-  name: ""
-  code: ""
-  minSdk: null
-  targetSdk: null
-developer:
-  name: ""
-  email: ""
-
-category: ""
+schemaVersion: '1.0'
+releaseStage: prelaunch
+name: OfflineSignage
+category: Android digital signage software & digital menu board
 description:
-  short: ""
-  full: ""
-  valueProposition: ""
-targetUsers: []
-useCases: []
-
-features:
-  - id: ""
-    name: ""
-    description: ""
-    evidence: []
-    confidence: "unknown"
-    details:
-      problem: ""
-      capabilities: []
-      supportedInputs: []
-      supportedOutputs: []
-      options: []
-      steps: []
-      limitations: []
-      searchIntents: []
-      faq:
-        - question: ""
-          answer: ""
-    blog:
-      template: "standard-article"
-technicalHighlights: []
-
-keywords:
-  primary: []
-  secondary: []
-  branded: []
-  excluded: []
-
+  short: Local-first digital signage player and digital menu board for Android TVs,
+    tablets, and commercial displays.
+  full: OfflineSignage turns Android advertising players, smart TVs, tablets, and
+    TV boxes into reliable digital signage displays and digital menu boards. Play
+    images, video loops, and menus with browser control over the local network—no
+    cloud accounts or recurring fees required.
+  valueProposition: Keep signage simple, local, and reliable without cloud subscriptions
+    or accounts.
+targetUsers:
+- Restaurants, cafes, and food courts running digital menu boards
+- Retail stores and small businesses displaying in-store promotions and ads
+- Offices, reception lobbies, clinics, and schools showing local announcements
+- Teams repurposing Android TVs, TV boxes, tablets, and older phones as screens
+useCases:
+- Digital menu boards for restaurants, cafes, and bars
+- Retail storefront advertising and dynamic window signage
+- Reception, lobby, clinic, and event announcement displays
+- Local network multi-screen synchronized signage playback
+plannedCapabilities:
+- id: local-media-playback
+  name: Local media playback & digital menu boards
+  description: Play high-resolution images, video loops, web pages, and custom playlists
+    directly on the Android signage player.
+- id: browser-control
+  name: Local network browser control
+  description: Manage playlists, media uploads, and playback schedules from any phone
+    or PC browser on the same Wi-Fi/LAN without cloud accounts.
+- id: reliable-recovery
+  name: Kiosk mode & auto boot recovery
+  description: Keep the screen awake 24/7, start automatically on device boot, and
+    recover playback seamlessly after power interruptions.
+- id: multi-device-sync
+  name: Multi-device discovery & sync
+  description: Automatically discover nearby signage players on the local network
+    and synchronize media files and playlists across screens.
+- id: signage-ready-display
+  name: Signage-ready display modes
+  description: Support landscape and portrait orientation, fullscreen playback, volume
+    and mute controls, and background blur for non-standard aspect ratios.
 brand:
-  productName: ""
-  tagline: ""
-  voice: []
-  colors: []
-  logo: ""
-
+  productName: OfflineSignage
+  tagline: Digital signage that stays local.
+  voice:
+  - Practical
+  - Reliable
+  - Clear
+  colors:
+  - '#0f766e'
+  - '#f4b942'
+  - '#f7f4ed'
 assets:
-  root: "app-launch-system/config/assets"
-  icon: ""
-  coverImage: ""
-  socialImage: ""
-  screenshots: []
-
+  root: app-launch-system/config/assets
+  icon: icon/icon.png
+  coverImage: cover/cover.png
+  socialImage: social/social-cover.png
+  screenshots:
+  - screenshots/signage-screen-main.png
+  - screenshots/digital-menu-board.png
+  - screenshots/store-display.png
+  - screenshots/multi-screen-sync.png
+  - screenshots/browser-control.png
 languages:
-  source: "en-US"
-  targets: []
-  availableInApp: []
+  source: en-US
+  targets:
+  - zh-CN
+  - ja-JP
+  - ko-KR
+  - es-ES
+  - fr-FR
+  - de-DE
+  - pt-BR
+  websiteTargets:
+  - zh-CN
+  - ja-JP
+  - ko-KR
+  - es-ES
+  - fr-FR
+  - de-DE
+  - pt-BR
+  availableInApp:
+  - en-US
+  - zh-CN
   routing:
     autoDetect: true
     rememberSelection: true
     sourceAtRoot: true
     aliases: {}
-
-screenshots:
-  - path: ""
-    locale: ""
-    screen: ""
-    caption: ""
-
-googlePlayUrl: ""
-websiteUrl: ""
+websiteUrl: ''
 searchConsole:
-  verificationToken: ""
-  verificationFileName: ""
-  verificationContent: ""
+  verificationToken: ''
+  verificationFileName: google939576fea7c9232c.html
+  verificationContent: 'google-site-verification: google939576fea7c9232c.html'
 bingWebmaster:
-  verificationToken: ""
-  verificationFileName: ""
-  verificationContent: ""
+  verificationToken: ''
+  verificationFileName: BingSiteAuth.xml
+  verificationContent: "<?xml version=\"1.0\"?>\n<users>\n  <user>DC4AB582C527A7A168FC391B84B8995E</user>\n\
+    </users>\n"
 indexNow:
-  key: ""
-  keyFileName: ""
-editorial:
-  publishedAt: ""
-  updatedAt: ""
-support:
-  email: ""
-  url: ""
-privacy:
-  policyUrl: ""
-  dataPractices: []
-
-permissions: []
-evidence:
-  - path: ""
-    supports: []
-unknowns: []
-claimsToAvoid: []
-
-# Prelaunch-only fields. Keep releaseStage as "app" for a verified Android app site.
+  key: ''
+  keyFileName: ''
 prelaunch:
-  status: "in-development"
+  status: in-development
   primaryCta:
-    label: ""
-    url: ""
-  announcement: ""
-  workflow: []
-  deviceTypes: []
-plannedCapabilities: []
+    label: See the product roadmap
+    url: '#features'
+  announcement: OfflineSignage is in development. The first release is focused on
+    dependable Android signage for local networks.
+  workflow:
+  - Install OfflineSignage on an Android advertising player
+  - Open the local control page from a browser
+  - Load media, build a playlist, and start playback
+  - Let the player continue locally after the browser closes
+  deviceTypes:
+  - Android advertising players
+  - Android TVs and TV boxes
+  - Android tablets
+  - Older Android phones
+support:
+  email: wukuiqing@gmail.com
+  url: https://heyehoi.cn/
+privacy:
+  policyUrl: ''
+  dataPractices: []
+screenshots:
+- path: screenshots/signage-screen-main.png
+  caption: OfflineSignage fullscreen digital signage player running on Android TV
+    and commercial display.
+- path: screenshots/digital-menu-board.png
+  caption: Digital menu board layout for restaurants, cafes, and food service counters.
+- path: screenshots/store-display.png
+  caption: Dynamic retail store window signage playing high-definition image and video
+    loops.
+- path: screenshots/multi-screen-sync.png
+  caption: Local network multi-screen discovery and playlist synchronization.
+- path: screenshots/browser-control.png
+  caption: Browser-based local control console for managing content without cloud
+    accounts.

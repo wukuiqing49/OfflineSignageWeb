@@ -540,8 +540,13 @@ def render_scenarios(content: dict, app: dict, locale: str) -> str:
         "de": ["Schaufenster und Menütafeln", "Empfang, Lobby und Veranstaltungen", "Fernseher, Tablets und ältere Smartphones"],
         "pt": ["Cartazes e menus de loja", "Recepção, lobby e eventos", "TVs, tablets e celulares antigos"],
     }
-    items = [str(item).strip() for item in (app.get("useCases") or []) if isinstance(item, str) and item.strip()]
-    items = items[:3] or default_items.get(language, default_items["en"])
+    localized_items = [str(item).strip() for item in (nested(content, "home.scenarios", []) or []) if isinstance(item, str) and item.strip()]
+    if localized_items:
+        items = localized_items[:3]
+    elif language == "en":
+        items = [str(item).strip() for item in (app.get("useCases") or []) if isinstance(item, str) and item.strip()][:3] or default_items["en"]
+    else:
+        items = default_items.get(language, default_items["en"])
     heading, intro = labels.get(language, labels["en"])
     cards = "".join(f'<article><h3>{esc(item)}</h3></article>' for item in items)
     return (

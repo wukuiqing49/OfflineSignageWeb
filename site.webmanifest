@@ -1,7 +1,7 @@
 {
   "name": "OfflineSignage",
   "short_name": "OfflineSignage",
-  "description": "Local-first digital signage for Android advertising players.",
+  "description": "Local-first digital signage player and digital menu board for Android TVs, tablets, and commercial displays.",
   "lang": "en-US",
   "start_url": "./",
   "display": "browser",

@@ -68,7 +68,10 @@ h2 { font-size: clamp(2rem, 4vw, 3.6rem); }
 .feature-list article::before { content: "↗"; margin-bottom: 2rem; color: var(--gold); font-size: 1.3rem; }
 .feature-link { margin-top: auto; color: var(--accent); font-weight: 750; text-decoration: none; }
 .screenshot-band { border-bottom: 1px solid var(--line); }
-.screenshot-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr)); gap: 1px; margin-top: 3rem; border: 1px solid var(--line); background: var(--line); }
+.screenshot-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr)); gap: 1px; margin-top: 3rem; border: 1px solid var(--line); background: var(--line); }
+.screenshot-list figure { margin: 0; padding: 1.25rem; background: var(--surface); display: flex; flex-direction: column; gap: .75rem; }
+.screenshot-list figure img { width: 100%; border-radius: 6px; aspect-ratio: 16 / 10; object-fit: cover; }
+.screenshot-list figure figcaption { color: var(--muted); font-size: .85rem; line-height: 1.45; }
 .device-point { min-height: 9rem; padding: 1.4rem; background: var(--surface); }
 .device-point h3 { margin: 0; font-size: 1rem; }
 .scenarios-band { max-width: var(--max); margin: 0 auto; padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 2.5rem); border-bottom: 1px solid var(--line); }

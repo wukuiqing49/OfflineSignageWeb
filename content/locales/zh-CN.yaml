@@ -1,89 +1,93 @@
-locale: "zh-CN"
-languageName: "简体中文"
-direction: "ltr"
-reviewStatus: "reviewed"
-inheritFrom: "en-US"
-
+locale: zh-CN
+languageName: 简体中文
+direction: ltr
+reviewStatus: reviewed
+inheritFrom: en-US
 navigation:
-  primaryLabel: "主导航"
-  footerLabel: "页脚导航"
-  home: "首页"
-  features: "功能规划"
-  screenshots: "适用设备"
-  support: "支持"
-  privacy: "隐私"
-  about: "企业信息"
-  blog: "博客"
-  language: "语言"
-  backToApp: "返回首页"
-
+  primaryLabel: 主导航
+  footerLabel: 页脚导航
+  home: 首页
+  features: 功能与规划
+  screenshots: 界面与场景
+  support: 技术支持
+  privacy: 隐私政策
+  about: 企业信息
+  blog: 博客
+  language: 语言
+  backToApp: 返回首页
 common:
-  skipToContent: "跳到主要内容"
-  googlePlayCta: "前往 Google Play"
-  availability: "Google Play 地址暂未提供"
-  rights: "保留所有权利。"
-  notFoundTitle: "页面未找到"
-  notFoundCopy: "请求的页面不存在。"
-  returnHome: "返回首页"
-
+  skipToContent: 跳到主要内容
+  googlePlayCta: 前往 Google Play 下载
+  availability: Google Play 地址暂未提供
+  rights: 保留所有权利。
+  notFoundTitle: 页面未找到
+  notFoundCopy: 请求的页面不存在。
+  returnHome: 返回首页
 home:
-  pageTitle: "OfflineSignage - Android 广告机系统"
-  metaDescription: "OfflineSignage 是面向 Android 广告机的本地优先数字标牌系统。无需云端和账号，通过局域网浏览器控制播放。"
-  category: "Android 广告机软件"
-  tagline: "让广告机保持本地、简单、可靠。"
-  shortDescription: "把 Android 广告机、电视、平板和旧手机变成可长期运行的数字广告屏。"
-  fullDescription: "OfflineSignage 将 Android 设备变成数字广告屏，设备自己负责本地服务器、资源存储和播放，浏览器通过局域网进行控制。"
-  heroScreenshotAlt: "OfflineSignage Android 广告机产品主视觉"
-  heroScreenshotCaption: "产品正在开发中，首个版本聚焦于稳定的 Android 广告机本地播放。"
-  overviewHeading: "为持续运行的广告机而设计"
-  overviewIntro: "从本地播放到局域网控制，每个模块都围绕稳定、清晰、可恢复的广告机体验展开。"
-  featuresHeading: "产品规划"
-  featuresIntro: "坚持 Local-first、Offline-first、No Cloud、No Account。"
+  pageTitle: OfflineSignage - Android 广告机与电子餐牌播放器 (Local Digital Signage & Menu Board)
+  metaDescription: OfflineSignage 是面向 Android 电视、平板与广告机的本地优先数字标牌系统（Digital Signage
+    Player & Digital Menu Board）。无需云端账号，局域网浏览器一键管理图片、视频与电子餐牌。
+  category: Android 广告机与电子餐牌软件
+  tagline: 让数字标牌与电子餐牌保持本地、简单、可靠。
+  shortDescription: 把 Android 广告机、智能电视、平板和旧手机变成长期稳定运行的数字广告屏与电子餐牌。
+  fullDescription: OfflineSignage 将 Android 设备变为专业的数字标牌播放器（Digital Signage Player）。设备内置轻量服务、本地存储与高清播放引擎，通过同一局域网内的浏览器即可轻松控制，无需云端订阅与复杂配置。
+  heroScreenshotAlt: OfflineSignage Android 广告机与电子餐牌产品主视觉
+  heroScreenshotCaption: 本地优先、零云端依赖的 Android 广告机与电子餐牌播放系统。
+  overviewHeading: 为 24/7 持续运行的显示屏而生
+  overviewIntro: 从高清本地媒体播放、多屏同步到局域网浏览器秒级控制，每个模块都围绕稳定、清晰、可自愈的商业标牌体验打造。
+  featuresHeading: 核心功能与规划
+  featuresIntro: 坚持 Local-first、Offline-first，无云端账号绑定，零隐性订阅费用。
   features:
     local-media-playback:
-      name: "本地媒体播放"
-      description: "在广告机本地播放图片、视频、网页内容和播放列表。"
+      name: 本地多媒体与电子餐牌播放
+      description: 在设备本地直接播放 4K 图片、循环视频、HTML 网页与自定义轮播列表。
     browser-control:
-      name: "局域网浏览器控制"
-      description: "通过同一局域网中的浏览器控制广告机，不强制注册云端账号。"
+      name: 局域网浏览器轻松控制
+      description: 手机或电脑连入同一 Wi-Fi，打开浏览器即可上传素材、调整排期与即时控制。
     reliable-recovery:
-      name: "稳定播放与自动恢复"
-      description: "保持屏幕常亮，断电或重启后恢复服务和上次播放状态。"
+      name: 商用保活与断电开机自愈
+      description: 屏幕持续常亮，支持开机自动启动并在异常重启后立即恢复上次播放状态。
     multi-device-sync:
-      name: "多设备发现与同步"
-      description: "自动发现附近广告机，同步资源和播放列表到各台设备。"
+      name: 局域网多设备发现与多屏同步
+      description: 自动发现局域网内的其它广告机，一键分发与同步媒体资源与播放列表。
     signage-ready-display:
-      name: "广告机显示模式"
-      description: "提供全屏、横竖屏、音量、静音和适合长期运行的播放设置。"
-  screenshotsHeading: "适用设备"
-  screenshotsIntro: "优先面向 Android 广告机，也支持 Android 电视、电视盒子、平板和旧手机。"
-  workflowHeading: "工作方式"
-  workflowIntro: "安装、连接、上传、播放；关闭浏览器后广告机继续独立运行。"
+      name: 横竖屏适配与商用展示模式
+      description: 支持横屏/竖屏自由切换、全屏沉浸播放、独立音量与静音控制，以及非标比例背景虚化。
+  screenshotsHeading: 真实场景与播放界面
+  screenshotsIntro: 适用于各类商业广告机、智能电视 (Android TV)、电视盒子、平板电脑及闲置旧手机。
+  scenarios:
+  - 餐饮与咖啡厅电子餐牌 (Digital Menu Boards)
+  - 零售门店橱窗与促销大屏 (In-Store Signage)
+  - 前台接待、诊所公告与多屏同步 (Lobby Displays)
+  workflowHeading: 工作方式
+  workflowIntro: 安装应用、连接网络、上传媒体、立即播放；关闭浏览器后广告机持续独立运行。
   workflowSteps:
-    - "安装 OfflineSignage 到 Android 广告机"
-    - "通过二维码或局域网地址打开控制页面"
-    - "上传图片、视频或添加网页并创建播放列表"
-    - "关闭浏览器，广告机继续本地播放"
-  closingHeading: "关注 OfflineSignage"
-  closingCopy: "产品正在开发中，欢迎关注后续测试版本。"
-
+  - 安装 OfflineSignage 到 Android 广告机或智能电视
+  - 手机/电脑通过局域网 IP 或扫码进入 Web 管理控制台
+  - 上传图片、视频或电子餐牌素材并配置播放列表
+  - 开启全屏播放，关闭管理页面后广告机依然独立稳定播放
+  closingHeading: 体验本地化数字标牌的强大与自由
+  closingCopy: 告别繁重的云端平台与持续订阅，立即打造属于您的独立数字标牌网络。
 privacy:
-  pageTitle: "隐私 - OfflineSignage"
-  metaDescription: "OfflineSignage 的隐私与预发布说明。"
-  heading: "隐私"
-  lastUpdatedLabel: "最后更新"
+  pageTitle: 隐私政策 - OfflineSignage
+  metaDescription: OfflineSignage 隐私政策与数据安全承诺。
+  heading: 隐私政策
+  lastUpdatedLabel: 最后更新
   content:
-    - heading: "预发布说明"
-      paragraphs:
-        - "产品仍在开发中，正式版本发布前会提供完整的隐私政策。"
-
+  - heading: 本地优先与隐私保护
+    paragraphs:
+    - OfflineSignage 采用 Local-first（本地优先）设计架构。您的图片、视频素材及播放配置仅存储在您的 Android 设备及局域网内部，不会上传到任何外部第三方云端服务器。
 support:
-  pageTitle: "支持 - OfflineSignage"
-  metaDescription: "OfflineSignage 的开发进展、企业信息和联系方式。"
-  heading: "支持"
-  intro: "OfflineSignage 正在开发中，首个版本聚焦于可靠的 Android 广告机本地播放。"
-  faqHeading: "常见问题"
-  faq: []
-  contactHeading: "联系项目团队"
-  contactCopy: "如果你希望参与早期测试，或有广告机使用场景，欢迎联系我们。"
-  contactCta: "发送邮件"
+  pageTitle: 技术支持与服务 - OfflineSignage
+  metaDescription: OfflineSignage 技术支持、常见问题解答与联系方式。
+  heading: 技术支持
+  intro: 如果您在部署 Android 广告机、配置局域网控制或电子餐牌播放中有任何疑问，我们随时为您提供支持。
+  faqHeading: 常见问题
+  faq:
+  - question: OfflineSignage 需要连接外网或注册云端账号吗？
+    answer: 不需要。OfflineSignage 纯本地运行，只需要设备处于同一局域网（Wi-Fi 或有线网络）即可通过浏览器管理，无外网亦可全功能播放。
+  - question: 支持哪些 Android 设备？
+    answer: 支持 Android 广告机、Android TV 智能电视、电视盒子、Android 平板以及闲置的 Android 手机。
+  contactHeading: 联系开发团队
+  contactCopy: 如有定制需求、商业合作或问题反馈，欢迎发送邮件与我们取得联系。
+  contactCta: 发送邮件咨询
