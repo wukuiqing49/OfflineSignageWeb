@@ -1,4 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
+  <url><loc>https://heyehoi.cn/</loc></url>
+  <url><loc>https://heyehoi.cn/about.html</loc></url>
+  <url><loc>https://heyehoi.cn/blog/</loc></url>
+  <url><loc>https://heyehoi.cn/blog/how-to-build-digital-menu-board-with-android/</loc></url>
+  <url><loc>https://heyehoi.cn/blog/kiosk-mode-and-multi-screen-signage-sync-guide/</loc></url>
+  <url><loc>https://heyehoi.cn/blog/setup-offline-digital-signage-player-lan-control/</loc></url>
+  <url><loc>https://heyehoi.cn/blog/zh-CN/</loc></url>
+  <url><loc>https://heyehoi.cn/blog/zh-CN/how-to-build-digital-menu-board-with-android/</loc></url>
+  <url><loc>https://heyehoi.cn/blog/zh-CN/kiosk-mode-and-multi-screen-signage-sync-guide/</loc></url>
+  <url><loc>https://heyehoi.cn/blog/zh-CN/setup-offline-digital-signage-player-lan-control/</loc></url>
+  <url><loc>https://heyehoi.cn/de-DE/</loc></url>
+  <url><loc>https://heyehoi.cn/de-DE/about.html</loc></url>
+  <url><loc>https://heyehoi.cn/de-DE/privacy.html</loc></url>
+  <url><loc>https://heyehoi.cn/de-DE/support.html</loc></url>
+  <url><loc>https://heyehoi.cn/es-ES/</loc></url>
+  <url><loc>https://heyehoi.cn/es-ES/about.html</loc></url>
+  <url><loc>https://heyehoi.cn/es-ES/privacy.html</loc></url>
+  <url><loc>https://heyehoi.cn/es-ES/support.html</loc></url>
+  <url><loc>https://heyehoi.cn/fr-FR/</loc></url>
+  <url><loc>https://heyehoi.cn/fr-FR/about.html</loc></url>
+  <url><loc>https://heyehoi.cn/fr-FR/privacy.html</loc></url>
+  <url><loc>https://heyehoi.cn/fr-FR/support.html</loc></url>
+  <url><loc>https://heyehoi.cn/ja-JP/</loc></url>
+  <url><loc>https://heyehoi.cn/ja-JP/about.html</loc></url>
+  <url><loc>https://heyehoi.cn/ja-JP/privacy.html</loc></url>
+  <url><loc>https://heyehoi.cn/ja-JP/support.html</loc></url>
+  <url><loc>https://heyehoi.cn/ko-KR/</loc></url>
+  <url><loc>https://heyehoi.cn/ko-KR/about.html</loc></url>
+  <url><loc>https://heyehoi.cn/ko-KR/privacy.html</loc></url>
+  <url><loc>https://heyehoi.cn/ko-KR/support.html</loc></url>
+  <url><loc>https://heyehoi.cn/privacy.html</loc></url>
+  <url><loc>https://heyehoi.cn/pt-BR/</loc></url>
+  <url><loc>https://heyehoi.cn/pt-BR/about.html</loc></url>
+  <url><loc>https://heyehoi.cn/pt-BR/privacy.html</loc></url>
+  <url><loc>https://heyehoi.cn/pt-BR/support.html</loc></url>
+  <url><loc>https://heyehoi.cn/support.html</loc></url>
+  <url><loc>https://heyehoi.cn/zh-CN/</loc></url>
+  <url><loc>https://heyehoi.cn/zh-CN/about.html</loc></url>
+  <url><loc>https://heyehoi.cn/zh-CN/privacy.html</loc></url>
+  <url><loc>https://heyehoi.cn/zh-CN/support.html</loc></url>
 </urlset>

@@ -1,0 +1,22 @@
+# OfflineSignage (Local-First Android Digital Signage & Menu Board)
+> Official Documentation, Technical Reference, and AI Search Brief
+
+OfflineSignage is a standalone, local-first digital signage player and digital menu board application for Android TV, commercial advertising displays, TV boxes, and tablets. It eliminates cloud accounts, remote servers, and recurring monthly fees.
+
+## Core Capabilities
+- **Local Media Playback**: Native hardware decoding for 4K video loops, image slideshows, and custom playlists.
+- **Embedded Web Management Server**: Built-in Ktor HTTP web server accessible via QR code / LAN IP from any phone, tablet, or PC browser.
+- **24/7 Commercial Kiosk & Self-Healing**: Wake-lock prevention of sleep, automatic boot recovery (`SignageBootReceiver`), and crash restoration.
+- **LAN Multi-Screen Sync**: UDP multicast peer discovery and batch synchronization across multiple displays on the same subnet.
+- **Orientation & Display Modes**: Fullscreen immersive playback, portrait/landscape orientation switching, and background blur for custom aspect ratios.
+
+## How-To Guides & Tutorials
+- [Digital Menu Board Setup Guide](https://heyehoi.cn/blog/how-to-build-digital-menu-board-with-android/): How to turn Android TVs into digital menu boards without subscriptions.
+- [LAN Browser Control Setup](https://heyehoi.cn/blog/setup-offline-digital-signage-player-lan-control/): Step-by-step walkthrough for local network control and media uploads.
+- [24/7 Kiosk & Multi-Screen Sync](https://heyehoi.cn/blog/kiosk-mode-and-multi-screen-signage-sync-guide/): Configuring commercial auto-start, wake-lock, and multi-display synchronization.
+
+## Target Hardware
+- Android Smart TVs (Sony, TCL, Xiaomi, Hisense, etc.)
+- Android TV Boxes & Sticks (Chromecast with Google TV, Fire TV, Mi Box)
+- Commercial Android digital signage screens & kiosks
+- Android tablets & repurposed mobile phones

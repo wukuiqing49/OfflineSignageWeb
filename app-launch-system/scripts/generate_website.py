@@ -2905,8 +2905,15 @@ def render_site(
     (stage / "sitemap.xml").write_text(sitemap, encoding="utf-8")
     robots = "User-agent: *\n"
     if base_url:
-        robots += "Allow: /\n"
-        robots += f"\nSitemap: {urljoin(base_url, 'sitemap.xml')}\n"
+        robots += "Allow: /\n\n"
+        robots += "User-agent: GPTBot\nAllow: /\n\n"
+        robots += "User-agent: ChatGPT-User\nAllow: /\n\n"
+        robots += "User-agent: PerplexityBot\nAllow: /\n\n"
+        robots += "User-agent: ClaudeBot\nAllow: /\n\n"
+        robots += "User-agent: Google-Extended\nAllow: /\n\n"
+        robots += "User-agent: Applebot-Extended\nAllow: /\n\n"
+        robots += "User-agent: Bingbot\nAllow: /\n\n"
+        robots += f"Sitemap: {urljoin(base_url, 'sitemap.xml')}\n"
     else:
         robots += "Disallow: /\n"
     (stage / "robots.txt").write_text(robots, encoding="utf-8")

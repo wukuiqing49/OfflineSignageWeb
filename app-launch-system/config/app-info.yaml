@@ -90,7 +90,7 @@ languages:
     rememberSelection: true
     sourceAtRoot: true
     aliases: {}
-websiteUrl: ''
+websiteUrl: https://heyehoi.cn
 searchConsole:
   verificationToken: ''
   verificationFileName: google939576fea7c9232c.html

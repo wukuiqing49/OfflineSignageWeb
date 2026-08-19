@@ -8,13 +8,12 @@ content:
   status: product-preview
   plannedCapabilities: 5
 seoGeo:
-  status: blocked
-  websiteUrl: ''
+  status: draft
+  websiteUrl: https://heyehoi.cn/
 aso:
   status: skipped
   reason: Google Play listing is not part of prelaunch mode
-publishReady: false
+publishReady: true
 warnings:
 - This is a prelaunch product website; Android app facts and store metadata are not
   verified.
-- websiteUrl is missing; canonical URLs and sitemap locations are blocked
