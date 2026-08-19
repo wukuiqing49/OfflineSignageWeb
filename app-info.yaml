@@ -101,8 +101,8 @@ bingWebmaster:
   verificationContent: "<?xml version=\"1.0\"?>\n<users>\n  <user>DC4AB582C527A7A168FC391B84B8995E</user>\n\
     </users>\n"
 indexNow:
-  key: '74b1b5e7ac934edda675f12ab12291fa'
-  keyFileName: '74b1b5e7ac934edda675f12ab12291fa.txt'
+  key: 'dfa8d8fe4060466682a78c762a3f6075'
+  keyFileName: 'dfa8d8fe4060466682a78c762a3f6075.txt'
 prelaunch:
   status: in-development
   primaryCta:
