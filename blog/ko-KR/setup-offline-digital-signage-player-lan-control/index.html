@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ko-KR" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>클라우드 종속성 없는 로컬 LAN 브라우저 제어 안드로이드 디지털 사이니지 구축 가이드 - OfflineSignage</title>
+  <meta name="description" content="안드로이드 기기 내장 웹 서버를 활용하여 외부 클라우드 연결 없이 브라우저로 미디어를 전송하고 재생을 제어하는 실전 가이드.">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="canonical" href="https://heyehoi.cn/blog/ko-KR/setup-offline-digital-signage-player-lan-control/">
+  <link rel="alternate" hreflang="en-US" href="https://heyehoi.cn/blog/setup-offline-digital-signage-player-lan-control/">
+  <link rel="alternate" hreflang="zh-CN" href="https://heyehoi.cn/blog/zh-CN/setup-offline-digital-signage-player-lan-control/">
+  <link rel="alternate" hreflang="ja-JP" href="https://heyehoi.cn/blog/ja-JP/setup-offline-digital-signage-player-lan-control/">
+  <link rel="alternate" hreflang="ko-KR" href="https://heyehoi.cn/blog/ko-KR/setup-offline-digital-signage-player-lan-control/">
+  <link rel="alternate" hreflang="es-ES" href="https://heyehoi.cn/blog/es-ES/setup-offline-digital-signage-player-lan-control/">
+  <link rel="alternate" hreflang="fr-FR" href="https://heyehoi.cn/blog/fr-FR/setup-offline-digital-signage-player-lan-control/">
+  <link rel="alternate" hreflang="de-DE" href="https://heyehoi.cn/blog/de-DE/setup-offline-digital-signage-player-lan-control/">
+  <link rel="alternate" hreflang="pt-BR" href="https://heyehoi.cn/blog/pt-BR/setup-offline-digital-signage-player-lan-control/">
+  <link rel="alternate" hreflang="x-default" href="https://heyehoi.cn/blog/setup-offline-digital-signage-player-lan-control/">
+  <meta property="og:type" content="article"><meta property="og:title" content="클라우드 종속성 없는 로컬 LAN 브라우저 제어 안드로이드 디지털 사이니지 구축 가이드"><meta property="og:description" content="안드로이드 기기 내장 웹 서버를 활용하여 외부 클라우드 연결 없이 브라우저로 미디어를 전송하고 재생을 제어하는 실전 가이드."><meta property="og:url" content="https://heyehoi.cn/blog/ko-KR/setup-offline-digital-signage-player-lan-control/"><meta property="og:image" content="https://heyehoi.cn/assets/screenshots/05-browser-control.png">
+  <link rel="stylesheet" href="../../../assets/styles.css">
+  <link rel="stylesheet" href="../../../assets/blog.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "클라우드 종속성 없는 로컬 LAN 브라우저 제어 안드로이드 디지털 사이니지 구축 가이드",
+      "description": "안드로이드 기기 내장 웹 서버를 활용하여 외부 클라우드 연결 없이 브라우저로 미디어를 전송하고 재생을 제어하는 실전 가이드.",
+      "image": "https://heyehoi.cn/assets/screenshots/05-browser-control.png",
+      "datePublished": "2026-08-19T08:00:00+08:00",
+      "dateModified": "2026-08-19T08:00:00+08:00",
+      "author": {
+        "@type": "Organization",
+        "name": "OfflineSignage Team",
+        "url": "https://heyehoi.cn/"
+      },
+      "publisher": {
+        "@id": "https://heyehoi.cn/#organization"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://heyehoi.cn/blog/ko-KR/setup-offline-digital-signage-player-lan-control/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://heyehoi.cn/ko-KR/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "블로그",
+          "item": "https://heyehoi.cn/blog/ko-KR/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "클라우드 종속성 없는 로컬 LAN 브라우저 제어 안드로이드 디지털 사이니지 구축 가이드",
+          "item": "https://heyehoi.cn/blog/ko-KR/setup-offline-digital-signage-player-lan-control/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  <script id="locale-routes" type="application/json">{"sourceLocale": "en-US", "currentLocale": "ko-KR", "autoRedirect": false, "rememberSelection": true, "storageKey": "OfflineSignage:locale", "aliases": {}, "locales": [{"code": "en-US", "url": "../../setup-offline-digital-signage-player-lan-control/"}, {"code": "zh-CN", "url": "../../zh-CN/setup-offline-digital-signage-player-lan-control/"}, {"code": "ja-JP", "url": "../../ja-JP/setup-offline-digital-signage-player-lan-control/"}, {"code": "ko-KR", "url": "./"}, {"code": "es-ES", "url": "../../es-ES/setup-offline-digital-signage-player-lan-control/"}, {"code": "fr-FR", "url": "../../fr-FR/setup-offline-digital-signage-player-lan-control/"}, {"code": "de-DE", "url": "../../de-DE/setup-offline-digital-signage-player-lan-control/"}, {"code": "pt-BR", "url": "../../pt-BR/setup-offline-digital-signage-player-lan-control/"}]}</script>
+  <script src="../../../assets/locale-router.js" defer></script>
+</head>
+<body class="blog-page article-page">
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <a class="brand" href="../../../ko-KR/" aria-label="OfflineSignage">
+      <img src="../../../assets/icon.png" alt="" width="40" height="40">
+      <span>OfflineSignage</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="../../../ko-KR/">홈</a>
+      <a href="../" aria-current="page">블로그</a>
+      <a href="../../../ko-KR/about.html">회사 소개</a>
+      <a href="../../../ko-KR/support.html">지원</a>
+      <label class="language-picker"><span class="visually-hidden">Language</span><select data-locale-switcher aria-label="Language"><option value="en-US" >English</option><option value="zh-CN" >简体中文</option><option value="ja-JP" >日本語</option><option value="ko-KR" selected>한국어</option><option value="es-ES" >Español</option><option value="fr-FR" >Français</option><option value="de-DE" >Deutsch</option><option value="pt-BR" >Português (Brasil)</option></select></label>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article>
+      <header class="article-header">
+        <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../../ko-KR/">홈</a> / <a href="../">블로그</a> / <span>구축 가이드</span></nav>
+        <p class="article-kicker">구축 가이드</p>
+        <h1>클라우드 종속성 없는 로컬 LAN 브라우저 제어 안드로이드 디지털 사이니지 구축 가이드</h1>
+        <p class="article-dek">안드로이드 기기 내장 웹 서버를 활용하여 외부 클라우드 연결 없이 브라우저로 미디어를 전송하고 재생을 제어하는 실전 가이드.</p>
+        <div class="article-meta"><time datetime='2026-08-19'>2026-08-19</time> &middot; <span>소요 시간 5분</span></div>
+      </header>
+
+      <figure class="article-hero-media"><img src="../../../assets/screenshots/05-browser-control.png" alt="클라우드 종속성 없는 로컬 LAN 브라우저 제어 안드로이드 디지털 사이니지 구축 가이드"><figcaption>클라우드 종속성 없는 로컬 LAN 브라우저 제어 안드로이드 디지털 사이니지 구축 가이드</figcaption></figure>
+
+      <div class="article-layout">
+        <aside class="article-toc" aria-label="Contents">
+          <p>Contents</p>
+          <nav><ul><li><a href='#main'>Overview</a></li></ul></nav>
+        </aside>
+        <div class="article-body">
+          
+<p class="lead">Most modern digital signage systems force you to create cloud accounts, connect displays to public servers, and transmit sensitive internal notices over the internet. OfflineSignage introduces a local-first alternative: an embedded web server running directly on the Android player device.</p>
+
+<h2>How Local Network Browser Control Works</h2>
+<p>When you start OfflineSignage on an Android device, the app starts an ultra-lightweight embedded Ktor HTTP server. This server listens on your local Wi-Fi / Ethernet network and serves a responsive Web Management UI. Any device on the same network can access the control page directly via its local IP address.</p>
+
+<h2>Step-by-Step Walkthrough</h2>
+<ol>
+  <li>Connect your Android display and management PC/phone to the same Wi-Fi router.</li>
+  <li>Open OfflineSignage on the Android player.</li>
+  <li>Open Chrome, Safari, or Edge on your computer and navigate to the IP shown on screen.</li>
+  <li>Upload media files directly to the device's internal storage and organize them into playlists.</li>
+  <li>Control playback volume, switch between portrait and landscape modes, and toggle blur effects in real-time.</li>
+</ol>
+
+        </div>
+      </div>
+    </article>
+
+    <section class="related-band" aria-labelledby="related-title">
+      <div class="related-heading">
+        <h2 id="related-title">관련 가이드</h2>
+        <a class="text-link" href="../">전체 보기 <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="article-grid article-grid-compact">
+        <article class="article-card">
+  <a class="article-card-media" href="../how-to-build-digital-menu-board-with-android/"><img src="../../../assets/screenshots/02-digital-menu-board.png" alt="월 구독료 없이 안드로이드 TV와 태블릿으로 전자 메뉴판(Digital Menu Board) 구축하기" loading="lazy"></a>
+  <div class="article-card-body">
+    <p class="article-kicker">튜토리얼</p>
+    <h3><a href="../how-to-build-digital-menu-board-with-android/">월 구독료 없이 안드로이드 TV와 태블릿으로 전자 메뉴판(Digital Menu Board) 구축하기</a></h3>
+    <p>비싼 전용 기기나 월 클라우드 구독료 없이, 안드로이드 스마트 TV나 태블릿을 활용해 카페와 식당을 위한 고화질 전자 메뉴판을 구축하는 방법.</p>
+  </div>
+</article>
+<article class="article-card">
+  <a class="article-card-media" href="../kiosk-mode-and-multi-screen-signage-sync-guide/"><img src="../../../assets/screenshots/04-multi-screen-sync.png" alt="24/7 상업용 키오스크 모드 및 멀티 스크린 LAN 동기화 설정 가이드" loading="lazy"></a>
+  <div class="article-card-body">
+    <p class="article-kicker">모범 사례</p>
+    <h3><a href="../kiosk-mode-and-multi-screen-signage-sync-guide/">24/7 상업용 키오스크 모드 및 멀티 스크린 LAN 동기화 설정 가이드</a></h3>
+    <p>화면 꺼짐 방지(Wake-Lock), 부팅 시 자동 실행, 동일 LAN 내의 여러 안드로이드 디스플레이를 검색하고 동기화하는 방법.</p>
+  </div>
+</article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 上海促动科技有限公司. 모든 권리 보유.</p>
+    <nav aria-label="Footer navigation">
+      <a href="../">블로그</a>
+      <a href="../../../ko-KR/privacy.html">개인정보처리방침</a>
+      <a href="../../../ko-KR/about.html">회사 소개</a>
+      <a href="../../../ko-KR/support.html">지원</a>
+    </nav>
+  </footer>
+  <script src="../../../assets/blog.js" defer></script>
+</body>
+</html>

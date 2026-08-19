@@ -9,12 +9,14 @@
   <link rel="canonical" href="https://heyehoi.cn/blog/how-to-build-digital-menu-board-with-android/">
   <link rel="alternate" hreflang="en-US" href="https://heyehoi.cn/blog/how-to-build-digital-menu-board-with-android/">
   <link rel="alternate" hreflang="zh-CN" href="https://heyehoi.cn/blog/zh-CN/how-to-build-digital-menu-board-with-android/">
+  <link rel="alternate" hreflang="ja-JP" href="https://heyehoi.cn/blog/ja-JP/how-to-build-digital-menu-board-with-android/">
+  <link rel="alternate" hreflang="ko-KR" href="https://heyehoi.cn/blog/ko-KR/how-to-build-digital-menu-board-with-android/">
+  <link rel="alternate" hreflang="es-ES" href="https://heyehoi.cn/blog/es-ES/how-to-build-digital-menu-board-with-android/">
+  <link rel="alternate" hreflang="fr-FR" href="https://heyehoi.cn/blog/fr-FR/how-to-build-digital-menu-board-with-android/">
+  <link rel="alternate" hreflang="de-DE" href="https://heyehoi.cn/blog/de-DE/how-to-build-digital-menu-board-with-android/">
+  <link rel="alternate" hreflang="pt-BR" href="https://heyehoi.cn/blog/pt-BR/how-to-build-digital-menu-board-with-android/">
   <link rel="alternate" hreflang="x-default" href="https://heyehoi.cn/blog/how-to-build-digital-menu-board-with-android/">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="How to Build a Digital Menu Board with Android TVs and Tablets without Monthly Fees">
-  <meta property="og:description" content="Step-by-step guide to repurposing any Android TV, box, or tablet into a commercial-grade digital menu board for cafes, restaurants, and food courts using OfflineSignage.">
-  <meta property="og:url" content="https://heyehoi.cn/blog/how-to-build-digital-menu-board-with-android/">
-  <meta property="og:image" content="https://heyehoi.cn/assets/screenshots/02-digital-menu-board.png">
+  <meta property="og:type" content="article"><meta property="og:title" content="How to Build a Digital Menu Board with Android TVs and Tablets without Monthly Fees"><meta property="og:description" content="Step-by-step guide to repurposing any Android TV, box, or tablet into a commercial-grade digital menu board for cafes, restaurants, and food courts using OfflineSignage."><meta property="og:url" content="https://heyehoi.cn/blog/how-to-build-digital-menu-board-with-android/"><meta property="og:image" content="https://heyehoi.cn/assets/screenshots/02-digital-menu-board.png">
   <link rel="stylesheet" href="../../assets/styles.css">
   <link rel="stylesheet" href="../../assets/blog.css">
   <script type="application/ld+json">
@@ -42,38 +44,6 @@
       }
     },
     {
-      "@type": "HowTo",
-      "name": "How to Build a Digital Menu Board with Android TVs and Tablets without Monthly Fees",
-      "description": "Step-by-step guide to repurposing any Android TV, box, or tablet into a commercial-grade digital menu board for cafes, restaurants, and food courts using OfflineSignage.",
-      "image": "https://heyehoi.cn/assets/screenshots/02-digital-menu-board.png",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Install & Launch OfflineSignage",
-          "text": "Download and open OfflineSignage on your Android TV or commercial display. The app automatically starts in fullscreen signage mode and displays its pairing QR code and local IP."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Connect via Browser",
-          "text": "On your smartphone or laptop on the same Wi-Fi, open your browser and go to the on-screen address (e.g. http://192.168.1.105:8080). No registration required."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Upload Menu Graphics & Videos",
-          "text": "Drag and drop your menu images, video specials, and price lists into the Web Console. Set duration timers (e.g. 10s per slide)."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 4,
-          "name": "Start Fullscreen Playback",
-          "text": "Click Start Playback. The Android display immediately loops your menus locally. You can close your phone browser safely."
-        }
-      ]
-    },
-    {
       "@type": "BreadcrumbList",
       "itemListElement": [
         {
@@ -99,7 +69,7 @@
   ]
 }
 </script>
-  <script id="locale-routes" type="application/json">{"sourceLocale":"en-US","currentLocale":"en-US","autoRedirect":false,"rememberSelection":true,"storageKey":"OfflineSignage:locale","aliases":{},"locales":[{"code":"en-US","url":"./"},{"code":"zh-CN","url":"../zh-CN/how-to-build-digital-menu-board-with-android/"}]}</script>
+  <script id="locale-routes" type="application/json">{"sourceLocale": "en-US", "currentLocale": "en-US", "autoRedirect": false, "rememberSelection": true, "storageKey": "OfflineSignage:locale", "aliases": {}, "locales": [{"code": "en-US", "url": "./"}, {"code": "zh-CN", "url": "../zh-CN/how-to-build-digital-menu-board-with-android/"}, {"code": "ja-JP", "url": "../ja-JP/how-to-build-digital-menu-board-with-android/"}, {"code": "ko-KR", "url": "../ko-KR/how-to-build-digital-menu-board-with-android/"}, {"code": "es-ES", "url": "../es-ES/how-to-build-digital-menu-board-with-android/"}, {"code": "fr-FR", "url": "../fr-FR/how-to-build-digital-menu-board-with-android/"}, {"code": "de-DE", "url": "../de-DE/how-to-build-digital-menu-board-with-android/"}, {"code": "pt-BR", "url": "../pt-BR/how-to-build-digital-menu-board-with-android/"}]}</script>
   <script src="../../assets/locale-router.js" defer></script>
 </head>
 <body class="blog-page article-page">
@@ -115,7 +85,7 @@
       <a href="../" aria-current="page">Blog</a>
       <a href="../../about.html">Company</a>
       <a href="../../support.html">Support</a>
-      <label class="language-picker"><span class="visually-hidden">Language</span><select data-locale-switcher aria-label="Language"><option value="en-US" selected>English</option><option value="zh-CN" >简体中文</option></select></label>
+      <label class="language-picker"><span class="visually-hidden">Language</span><select data-locale-switcher aria-label="Language"><option value="en-US" selected>English</option><option value="zh-CN" >简体中文</option><option value="ja-JP" >日本語</option><option value="ko-KR" >한국어</option><option value="es-ES" >Español</option><option value="fr-FR" >Français</option><option value="de-DE" >Deutsch</option><option value="pt-BR" >Português (Brasil)</option></select></label>
     </nav>
   </header>
 
@@ -129,7 +99,7 @@
         <div class="article-meta"><time datetime='2026-08-19'>2026-08-19</time> &middot; <span>6 min read</span></div>
       </header>
 
-      <figure class="article-hero-media"><img src="../../assets/screenshots/02-digital-menu-board.png" alt="How to Build a Digital Menu Board with Android TVs and Tablets without Monthly Fees"></figure>
+      <figure class="article-hero-media"><img src="../../assets/screenshots/02-digital-menu-board.png" alt="How to Build a Digital Menu Board with Android TVs and Tablets without Monthly Fees"><figcaption>How to Build a Digital Menu Board with Android TVs and Tablets without Monthly Fees</figcaption></figure>
 
       <div class="article-layout">
         <aside class="article-toc" aria-label="Contents">
@@ -143,14 +113,6 @@
 <h2>Why Choose a Local-First Digital Menu Board?</h2>
 <p>Traditional cloud digital signage platforms charge monthly subscriptions per screen ($10 - $50/month per display) and stop displaying content or display watermark errors if your internet goes down. A local-first architecture solves this by storing all menu media directly on the Android player device, controlled entirely over your local Wi-Fi or Ethernet network.</p>
 
-<h2>What You Need</h2>
-<ul>
-  <li><strong>Screen / Hardware:</strong> Any Android TV (Sony, TCL, Xiaomi, Hisense), Android TV Box (Chromecast with Google TV, Fire TV, Mi Box), commercial signage display, or Android tablet.</li>
-  <li><strong>App:</strong> OfflineSignage installed on the Android device.</li>
-  <li><strong>Control Device:</strong> Your smartphone, iPad, laptop, or POS computer connected to the same Wi-Fi.</li>
-  <li><strong>Menu Media:</strong> 4K/1080p images (PNG/JPG), MP4 promotional video loops, or HTML menu layouts.</li>
-</ul>
-
 <h2>Step-by-Step Setup Guide</h2>
 <ol>
   <li><strong>Install & Launch OfflineSignage:</strong> Download and open OfflineSignage on your Android TV or commercial display. The app automatically enters fullscreen signage mode and displays its local pairing code and LAN IP address.</li>
@@ -160,8 +122,9 @@
   <li><strong>Close the Browser:</strong> You can safely close your phone or computer browser. The Android display continues running 24/7 independently from local storage.</li>
 </ol>
 
-<h2>Best Practices for Restaurant Menu Boards</h2>
-<p>For multi-item menus, split your items across 2&ndash;3 high-contrast slides. Use landscape orientation for wall-mounted TVs and portrait orientation for counter tablet displays. OfflineSignage supports automatic screen wake-lock, so your menu never sleeps during business hours.</p>
+<div class="callout-tip">
+  <p><strong>💡 Pro Tip:</strong> For multi-item menus, split your items across 2&ndash;3 high-contrast slides. OfflineSignage supports automatic screen wake-lock, so your menu never sleeps during business hours.</p>
+</div>
 
         </div>
       </div>

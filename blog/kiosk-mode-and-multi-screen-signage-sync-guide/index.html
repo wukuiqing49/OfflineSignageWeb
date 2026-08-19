@@ -9,12 +9,14 @@
   <link rel="canonical" href="https://heyehoi.cn/blog/kiosk-mode-and-multi-screen-signage-sync-guide/">
   <link rel="alternate" hreflang="en-US" href="https://heyehoi.cn/blog/kiosk-mode-and-multi-screen-signage-sync-guide/">
   <link rel="alternate" hreflang="zh-CN" href="https://heyehoi.cn/blog/zh-CN/kiosk-mode-and-multi-screen-signage-sync-guide/">
+  <link rel="alternate" hreflang="ja-JP" href="https://heyehoi.cn/blog/ja-JP/kiosk-mode-and-multi-screen-signage-sync-guide/">
+  <link rel="alternate" hreflang="ko-KR" href="https://heyehoi.cn/blog/ko-KR/kiosk-mode-and-multi-screen-signage-sync-guide/">
+  <link rel="alternate" hreflang="es-ES" href="https://heyehoi.cn/blog/es-ES/kiosk-mode-and-multi-screen-signage-sync-guide/">
+  <link rel="alternate" hreflang="fr-FR" href="https://heyehoi.cn/blog/fr-FR/kiosk-mode-and-multi-screen-signage-sync-guide/">
+  <link rel="alternate" hreflang="de-DE" href="https://heyehoi.cn/blog/de-DE/kiosk-mode-and-multi-screen-signage-sync-guide/">
+  <link rel="alternate" hreflang="pt-BR" href="https://heyehoi.cn/blog/pt-BR/kiosk-mode-and-multi-screen-signage-sync-guide/">
   <link rel="alternate" hreflang="x-default" href="https://heyehoi.cn/blog/kiosk-mode-and-multi-screen-signage-sync-guide/">
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="24/7 Commercial Kiosk Mode & Multi-Screen LAN Synchronization Guide">
-  <meta property="og:description" content="Master commercial signage reliability: keep screens awake 24/7, enable auto-start on boot, and discover and sync playlists across multiple Android displays on the same LAN.">
-  <meta property="og:url" content="https://heyehoi.cn/blog/kiosk-mode-and-multi-screen-signage-sync-guide/">
-  <meta property="og:image" content="https://heyehoi.cn/assets/screenshots/04-multi-screen-sync.png">
+  <meta property="og:type" content="article"><meta property="og:title" content="24/7 Commercial Kiosk Mode & Multi-Screen LAN Synchronization Guide"><meta property="og:description" content="Master commercial signage reliability: keep screens awake 24/7, enable auto-start on boot, and discover and sync playlists across multiple Android displays on the same LAN."><meta property="og:url" content="https://heyehoi.cn/blog/kiosk-mode-and-multi-screen-signage-sync-guide/"><meta property="og:image" content="https://heyehoi.cn/assets/screenshots/04-multi-screen-sync.png">
   <link rel="stylesheet" href="../../assets/styles.css">
   <link rel="stylesheet" href="../../assets/blog.css">
   <script type="application/ld+json">
@@ -42,38 +44,6 @@
       }
     },
     {
-      "@type": "HowTo",
-      "name": "24/7 Commercial Kiosk Mode & Multi-Screen LAN Synchronization Guide",
-      "description": "Master commercial signage reliability: keep screens awake 24/7, enable auto-start on boot, and discover and sync playlists across multiple Android displays on the same LAN.",
-      "image": "https://heyehoi.cn/assets/screenshots/04-multi-screen-sync.png",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Enable Boot Receiver",
-          "text": "Configure auto-start on device power-on so displays resume playback automatically after power cuts."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Designate Primary Host",
-          "text": "Choose one signage screen as the primary controller in your local web dashboard."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Discover Peer Displays via UDP",
-          "text": "Click Discover Displays to locate all active OfflineSignage units on the subnet."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 4,
-          "name": "Batch Synchronize Playlists",
-          "text": "Push updated schedules and 4K media files across all screens in one click."
-        }
-      ]
-    },
-    {
       "@type": "BreadcrumbList",
       "itemListElement": [
         {
@@ -99,7 +69,7 @@
   ]
 }
 </script>
-  <script id="locale-routes" type="application/json">{"sourceLocale":"en-US","currentLocale":"en-US","autoRedirect":false,"rememberSelection":true,"storageKey":"OfflineSignage:locale","aliases":{},"locales":[{"code":"en-US","url":"./"},{"code":"zh-CN","url":"../zh-CN/kiosk-mode-and-multi-screen-signage-sync-guide/"}]}</script>
+  <script id="locale-routes" type="application/json">{"sourceLocale": "en-US", "currentLocale": "en-US", "autoRedirect": false, "rememberSelection": true, "storageKey": "OfflineSignage:locale", "aliases": {}, "locales": [{"code": "en-US", "url": "./"}, {"code": "zh-CN", "url": "../zh-CN/kiosk-mode-and-multi-screen-signage-sync-guide/"}, {"code": "ja-JP", "url": "../ja-JP/kiosk-mode-and-multi-screen-signage-sync-guide/"}, {"code": "ko-KR", "url": "../ko-KR/kiosk-mode-and-multi-screen-signage-sync-guide/"}, {"code": "es-ES", "url": "../es-ES/kiosk-mode-and-multi-screen-signage-sync-guide/"}, {"code": "fr-FR", "url": "../fr-FR/kiosk-mode-and-multi-screen-signage-sync-guide/"}, {"code": "de-DE", "url": "../de-DE/kiosk-mode-and-multi-screen-signage-sync-guide/"}, {"code": "pt-BR", "url": "../pt-BR/kiosk-mode-and-multi-screen-signage-sync-guide/"}]}</script>
   <script src="../../assets/locale-router.js" defer></script>
 </head>
 <body class="blog-page article-page">
@@ -115,7 +85,7 @@
       <a href="../" aria-current="page">Blog</a>
       <a href="../../about.html">Company</a>
       <a href="../../support.html">Support</a>
-      <label class="language-picker"><span class="visually-hidden">Language</span><select data-locale-switcher aria-label="Language"><option value="en-US" selected>English</option><option value="zh-CN" >简体中文</option></select></label>
+      <label class="language-picker"><span class="visually-hidden">Language</span><select data-locale-switcher aria-label="Language"><option value="en-US" selected>English</option><option value="zh-CN" >简体中文</option><option value="ja-JP" >日本語</option><option value="ko-KR" >한국어</option><option value="es-ES" >Español</option><option value="fr-FR" >Français</option><option value="de-DE" >Deutsch</option><option value="pt-BR" >Português (Brasil)</option></select></label>
     </nav>
   </header>
 
@@ -129,7 +99,7 @@
         <div class="article-meta"><time datetime='2026-08-19'>2026-08-19</time> &middot; <span>5 min read</span></div>
       </header>
 
-      <figure class="article-hero-media"><img src="../../assets/screenshots/04-multi-screen-sync.png" alt="24/7 Commercial Kiosk Mode & Multi-Screen LAN Synchronization Guide"></figure>
+      <figure class="article-hero-media"><img src="../../assets/screenshots/04-multi-screen-sync.png" alt="24/7 Commercial Kiosk Mode & Multi-Screen LAN Synchronization Guide"><figcaption>24/7 Commercial Kiosk Mode & Multi-Screen LAN Synchronization Guide</figcaption></figure>
 
       <div class="article-layout">
         <aside class="article-toc" aria-label="Contents">
@@ -141,20 +111,18 @@
 <p class="lead">Commercial digital signage in retail stores, lobbies, and exhibitions must meet two critical requirements: non-stop 24/7 unattended operation and seamless multi-screen content synchronization. Here is how OfflineSignage delivers both out of the box.</p>
 
 <h2>Commercial Reliability & Kiosk Hardening</h2>
-<p>Consumer Android systems are designed to sleep, dim screens, or prompt for user interaction. OfflineSignage includes built-in kiosk hardening features:</p>
 <ul>
   <li><strong>Full Wake-Lock:</strong> Prevents the screen from dimming or sleeping during playback.</li>
   <li><strong>Boot Receiver (Auto-Start):</strong> Automatically launches OfflineSignage and resumes the active playlist as soon as the Android device powers on.</li>
-  <li><strong>Crash & Power-Failure Self-Healing:</strong> Saves playback state locally so power glitches or device reboots restore previous playback without manual intervention.</li>
+  <li><strong>Crash & Power-Failure Self-Healing:</strong> Saves playback state locally so power glitches restore previous playback without manual intervention.</li>
   <li><strong>Fullscreen Immersive Mode:</strong> Automatically hides navigation bars and system bars for a distraction-free display.</li>
 </ul>
 
 <h2>Multi-Screen LAN Discovery and Synchronization</h2>
-<p>When operating multiple displays across a store or reception area, updating each screen individually is tedious. OfflineSignage utilizes UDP multicast beacon discovery to find all peer signage devices on the same subnet.</p>
 <ol>
   <li>Designate one Android player as the Primary screen in your Web console.</li>
-  <li>Click &ldquo;Discover Displays&rdquo; in the management dashboard. All active OfflineSignage screens on your LAN will appear instantly.</li>
-  <li>Select target screens and click &ldquo;Sync Playlist&rdquo;. Media files and schedules are distributed across all selected displays simultaneously.</li>
+  <li>Click &ldquo;Discover Displays&rdquo; in the management dashboard. All active OfflineSignage screens on your LAN appear instantly.</li>
+  <li>Select target screens and click &ldquo;Sync Playlist&rdquo; to distribute media and schedules across all screens simultaneously.</li>
 </ol>
 
         </div>
