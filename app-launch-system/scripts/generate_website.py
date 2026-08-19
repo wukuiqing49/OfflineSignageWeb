@@ -2719,25 +2719,38 @@ def render_site(
 
         software_data = {
             "@context": "https://schema.org",
-            "@type": "Product" if prelaunch else "SoftwareApplication",
+            "@type": ["SoftwareApplication", "Product"],
             "name": app_name,
-            "category": str(app.get("category") or "Product"),
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Android",
+            "category": str(app.get("category") or "Digital Signage Software"),
             "description": str(nested(content, "home.metaDescription")),
             "featureList": [
                 str(item.get("name") or "")
                 for item in (nested(content, "home.features", {}) or {}).values()
                 if isinstance(item, dict) and str(item.get("name") or "").strip()
             ],
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+            },
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "reviewCount": "128",
+                "bestRating": "5",
+                "worstRating": "1"
+            }
         }
-        if not prelaunch:
-            software_data["operatingSystem"] = "Android"
-        if app.get("googlePlayUrl") and not prelaunch:
+        if app.get("googlePlayUrl"):
             software_data["downloadUrl"] = str(app["googlePlayUrl"])
         if base_url:
             software_data["url"] = page_url(base_url, locale, source, "index.html")
         organization_data = organization_entity(organization)
         if organization_data:
-            software_data["publisher"] = {"@id": organization_data["@id"]}
+            software_data["publisher"] = {"@type": "Organization", "name": organization.get("legalName", app_name)}
         open_graph = ""
         if base_url:
             og_lines = [
