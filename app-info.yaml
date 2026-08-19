@@ -86,7 +86,7 @@ languages:
   - en-US
   - zh-CN
   routing:
-    autoDetect: true
+    autoDetect: false
     rememberSelection: true
     sourceAtRoot: true
     aliases: {}

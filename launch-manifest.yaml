@@ -1,34 +1,34 @@
 schemaVersion: '1.0'
 projectPath: ''
 outputRoot: .
-createdAt: '2026-08-19T07:47:10.341815+00:00'
-updatedAt: '2026-08-19T07:47:10.341815+00:00'
+createdAt: '2026-08-19T07:53:16.200463+00:00'
+updatedAt: '2026-08-19T07:53:16.200463+00:00'
 status: completed
 stages:
   analyzer:
     status: skipped
     output: app-info.yaml
-    validatedAt: '2026-08-19T07:47:10.341815+00:00'
+    validatedAt: '2026-08-19T07:53:16.200463+00:00'
     error: ''
   website:
     status: completed
     output: index.html
-    validatedAt: '2026-08-19T07:47:10.341815+00:00'
+    validatedAt: '2026-08-19T07:53:16.200463+00:00'
     error: ''
   seoGeo:
     status: completed
     output: seo-geo/
-    validatedAt: '2026-08-19T07:47:10.341815+00:00'
+    validatedAt: '2026-08-19T07:53:16.200463+00:00'
     error: ''
   aso:
     status: skipped
     output: aso/
-    validatedAt: '2026-08-19T07:47:10.341815+00:00'
+    validatedAt: '2026-08-19T07:53:16.200463+00:00'
     error: ''
   blog:
     status: skipped
     output: blog/
-    validatedAt: '2026-08-19T07:47:10.341815+00:00'
+    validatedAt: '2026-08-19T07:53:16.200463+00:00'
     error: ''
 review:
   status: draft
