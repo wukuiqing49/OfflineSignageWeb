@@ -11,9 +11,9 @@ OfflineSignage is a standalone, local-first digital signage player and digital m
 - **Orientation & Display Modes**: Fullscreen immersive playback, portrait/landscape orientation switching, and background blur for custom aspect ratios.
 
 ## How-To Guides & Tutorials
-- [Digital Menu Board Setup Guide](https://heyehoi.cn/blog/how-to-build-digital-menu-board-with-android/): How to turn Android TVs into digital menu boards without subscriptions.
-- [LAN Browser Control Setup](https://heyehoi.cn/blog/setup-offline-digital-signage-player-lan-control/): Step-by-step walkthrough for local network control and media uploads.
-- [24/7 Kiosk & Multi-Screen Sync](https://heyehoi.cn/blog/kiosk-mode-and-multi-screen-signage-sync-guide/): Configuring commercial auto-start, wake-lock, and multi-display synchronization.
+- [Digital Menu Board Setup Guide](/blog/how-to-build-digital-menu-board-with-android/): How to turn Android TVs into digital menu boards without subscriptions.
+- [LAN Browser Control Setup](/blog/setup-offline-digital-signage-player-lan-control/): Step-by-step walkthrough for local network control and media uploads.
+- [24/7 Kiosk & Multi-Screen Sync](/blog/kiosk-mode-and-multi-screen-signage-sync-guide/): Configuring commercial auto-start, wake-lock, and multi-display synchronization.
 
 ## Target Hardware
 - Android Smart TVs (Sony, TCL, Xiaomi, Hisense, etc.)

@@ -332,11 +332,11 @@ def load_organization(path: Path | None) -> dict:
         raise GenerationError(f"organization file does not exist: {path}")
     organization = load_yaml(path)
     errors: list[str] = []
-    for field in ("legalName", "displayName", "website", "email"):
+    for field in ("legalName", "displayName", "email"):
         require_string(organization, field, errors)
-    website = str(organization.get("website") or "")
-    if website and not re.match(r"^https://[^\s]+$", website):
-        errors.append("organization.website must be an https URL")
+    website = str(organization.get("website") or "").strip()
+    if website and not re.match(r"^https?://[^\s]+$", website):
+        errors.append("organization.website must be an http or https URL")
     email = str(organization.get("email") or "")
     if email and not re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", email):
         errors.append("organization.email must be a valid email address")
@@ -2894,26 +2894,27 @@ def render_site(
     (stage / "site.webmanifest").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     sitemap_entries = []
-    if base_url:
-        all_html_files = sorted(set(path.relative_to(stage).as_posix() for path in stage.rglob("*.html") if "404" not in path.name and "google" not in path.name))
-        for page in all_html_files:
-            relative_url = "" if page == "index.html" else page.removesuffix("index.html")
-            sitemap_entries.append(f"  <url><loc>{esc(urljoin(base_url, relative_url))}</loc></url>")
+    all_html_files = sorted(set(path.relative_to(stage).as_posix() for path in stage.rglob("*.html") if "404" not in path.name and "google" not in path.name))
+    for page in all_html_files:
+        relative_url = "" if page == "index.html" else page.removesuffix("index.html")
+        loc_str = urljoin(base_url, relative_url) if base_url else ("/" + relative_url)
+        sitemap_entries.append(f"  <url><loc>{esc(loc_str)}</loc></url>")
     sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + "\n".join(sitemap_entries) + "\n</urlset>\n"
     (stage / "sitemap.xml").write_text(sitemap, encoding="utf-8")
-    robots = "User-agent: *\n"
+    robots = (
+        "User-agent: *\nAllow: /\n\n"
+        "User-agent: GPTBot\nAllow: /\n\n"
+        "User-agent: ChatGPT-User\nAllow: /\n\n"
+        "User-agent: PerplexityBot\nAllow: /\n\n"
+        "User-agent: ClaudeBot\nAllow: /\n\n"
+        "User-agent: Google-Extended\nAllow: /\n\n"
+        "User-agent: Applebot-Extended\nAllow: /\n\n"
+        "User-agent: Bingbot\nAllow: /\n\n"
+    )
     if base_url:
-        robots += "Allow: /\n\n"
-        robots += "User-agent: GPTBot\nAllow: /\n\n"
-        robots += "User-agent: ChatGPT-User\nAllow: /\n\n"
-        robots += "User-agent: PerplexityBot\nAllow: /\n\n"
-        robots += "User-agent: ClaudeBot\nAllow: /\n\n"
-        robots += "User-agent: Google-Extended\nAllow: /\n\n"
-        robots += "User-agent: Applebot-Extended\nAllow: /\n\n"
-        robots += "User-agent: Bingbot\nAllow: /\n\n"
         robots += f"Sitemap: {urljoin(base_url, 'sitemap.xml')}\n"
     else:
-        robots += "Disallow: /\n"
+        robots += "Sitemap: /sitemap.xml\n"
     (stage / "robots.txt").write_text(robots, encoding="utf-8")
 
     status = {

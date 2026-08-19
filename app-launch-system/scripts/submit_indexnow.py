@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Submit all sitemap URLs to IndexNow API (Bing, Yandex, Seznam, Naver)."""
 
+import argparse
 import json
 import urllib.request
 import urllib.error
@@ -8,13 +9,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 SITEMAP_PATH = ROOT / "sitemap.xml"
-HOST = "heyehoi.cn"
 KEY = "d8f4c2e61a7b40989f3a5e1289bc704a"
-KEY_LOCATION = f"https://{HOST}/{KEY}.txt"
 
-def get_urls():
+def get_urls(host: str):
     if not SITEMAP_PATH.exists():
-        return [f"https://{HOST}/"]
+        return [f"https://{host}/"]
     content = SITEMAP_PATH.read_text(encoding="utf-8")
     urls = []
     for line in content.splitlines():
@@ -22,14 +21,16 @@ def get_urls():
             loc = line.strip().replace("<loc>", "").replace("</loc>", "").replace("<url>", "").replace("</url>", "")
             if loc.startswith("http"):
                 urls.append(loc)
+            elif loc.startswith("/"):
+                urls.append(f"https://{host}{loc}")
     return sorted(set(urls))
 
-def submit():
-    url_list = get_urls()
+def submit(host: str):
+    url_list = get_urls(host)
     payload = {
-        "host": HOST,
+        "host": host,
         "key": KEY,
-        "keyLocation": KEY_LOCATION,
+        "keyLocation": f"https://{host}/{KEY}.txt",
         "urlList": url_list
     }
     data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
@@ -39,7 +40,7 @@ def submit():
         "https://www.bing.com/indexnow"
     ]
     
-    print(f"Submitting {len(url_list)} URLs to IndexNow endpoints...")
+    print(f"Submitting {len(url_list)} URLs for host {host} to IndexNow endpoints...")
     for endpoint in endpoints:
         req = urllib.request.Request(
             endpoint,
@@ -59,4 +60,7 @@ def submit():
             print(f"[ERROR] {endpoint}: {e}")
 
 if __name__ == "__main__":
-    submit()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", default="localhost", help="Domain host name to submit")
+    args = parser.parse_args()
+    submit(args.host)
