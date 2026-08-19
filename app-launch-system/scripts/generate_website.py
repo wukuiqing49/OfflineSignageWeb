@@ -2920,15 +2920,17 @@ def render_site(
     (stage / "sitemap.xml").write_text(sitemap, encoding="utf-8")
     robots = (
         "User-agent: *\nAllow: /\n\n"
+        "User-agent: Googlebot\nAllow: /\n\n"
+        "User-agent: Googlebot-Image\nAllow: /\n\n"
+        "User-agent: Google-Extended\nAllow: /\n\n"
+        "User-agent: GoogleOther\nAllow: /\n\n"
         "User-agent: Bingbot\nAllow: /\n\n"
         "User-agent: msnbot\nAllow: /\n\n"
         "User-agent: BingPreview\nAllow: /\n\n"
-        "User-agent: Googlebot\nAllow: /\n\n"
         "User-agent: GPTBot\nAllow: /\n\n"
         "User-agent: ChatGPT-User\nAllow: /\n\n"
         "User-agent: PerplexityBot\nAllow: /\n\n"
         "User-agent: ClaudeBot\nAllow: /\n\n"
-        "User-agent: Google-Extended\nAllow: /\n\n"
         "User-agent: Applebot-Extended\nAllow: /\n\n"
     )
     if base_url:
