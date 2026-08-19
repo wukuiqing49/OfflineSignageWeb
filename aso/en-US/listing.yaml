@@ -1,0 +1,48 @@
+schemaVersion: '1.0'
+locale: en-US
+title: 'OfflineSignage: Digital Signage'
+shortDescription: Local digital signage player & digital menu board for Android TV,
+  tablet & screen
+fullDescription: 'Transform any Android TV, commercial display, TV box, or tablet
+  into a powerful, reliable digital signage player and digital menu board.
+
+
+  OfflineSignage is built from the ground up for businesses that value simplicity,
+  privacy, and 24/7 reliability without monthly cloud fees.
+
+
+  KEY FEATURES:
+
+  - High-Performance Media Playback: Smoothly loop 4K videos, high-resolution images,
+  digital menu boards, and web pages.
+
+  - Local Network Browser Control: Upload files and change playlists from your phone
+  or PC browser on the same Wi-Fi/LAN. No cloud account needed.
+
+  - Commercial Kiosk & Auto-Start: Keeps your screen awake 24/7 and automatically
+  resumes playback when the device powers on.
+
+  - Multi-Screen Sync: Synchronize playlists and media across multiple Android displays
+  on your local network.
+
+  - Flexible Display Modes: Landscape and portrait orientations, background blur for
+  custom ratios, and instant audio mute.
+
+
+  PERFECT FOR:
+
+  - Restaurants, cafes, and food courts (Digital Menu Boards)
+
+  - Retail stores and boutique window displays
+
+  - Corporate lobbies, reception desks, and office announcements
+
+  - Schools, hospitals, clinics, and event venues
+
+
+  Enjoy reliable digital signage that stays local, fast, and completely under your
+  control.'
+characterCounts:
+  title: 30
+  shortDescription: 79
+  fullDescription: 1138

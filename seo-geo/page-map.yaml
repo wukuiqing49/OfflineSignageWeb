@@ -1,0 +1,27 @@
+schemaVersion: '1.0'
+pages:
+- path: /
+  name: Home (En)
+  primaryIntent: Commercial Investigation & Product Discovery
+  primaryKeyword: digital signage player
+  targetAudience: Small business owners, restaurants, IT teams needing local signage
+- path: /zh-CN/
+  name: Home (Zh-CN)
+  primaryIntent: Commercial Investigation & Product Discovery (CN)
+  primaryKeyword: Android 广告机播放器
+  targetAudience: 餐饮门店、零售店主、展厅与企业前台管理员
+- path: /blog/how-to-build-digital-menu-board-with-android/
+  name: 'Blog: Digital Menu Board Guide'
+  primaryIntent: How-to & Implementation Guide
+  primaryKeyword: digital menu boards for restaurants
+  targetAudience: Restaurant managers, coffee shop owners, food court operators
+- path: /blog/setup-offline-digital-signage-player-lan-control/
+  name: 'Blog: LAN Control & Setup Guide'
+  primaryIntent: Tutorial & Technical Walkthrough
+  primaryKeyword: local digital signage lan control
+  targetAudience: Display administrators, retail operators, TV box users
+- path: /blog/kiosk-mode-and-multi-screen-signage-sync-guide/
+  name: 'Blog: 24/7 Kiosk & Multi-Screen Sync'
+  primaryIntent: Enterprise / Multi-display Deployment Guide
+  primaryKeyword: android digital signage multi-screen sync
+  targetAudience: Commercial venue managers, digital signage deployment teams

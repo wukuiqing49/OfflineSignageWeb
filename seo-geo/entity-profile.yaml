@@ -1,0 +1,11 @@
+schemaVersion: '1.0'
+product:
+  name: OfflineSignage
+  category: Digital Signage Software / Digital Menu Board Player
+  operatingSystem: Android (TV, Box, Commercial Display, Tablet, Mobile)
+  architecture: Local-first, embedded HTTP web server, peer-to-peer LAN discovery
+  valueProposition: Simple, dependable, local digital signage player and digital menu
+    boards without subscriptions or cloud lock-in.
+  publisher: 上海促动科技有限公司 (Shanghai Cudong Technology Co., Ltd.)
+  officialWebsite: https://heyehoi.cn/
+  licenseType: Freemium / Standalone Local License
