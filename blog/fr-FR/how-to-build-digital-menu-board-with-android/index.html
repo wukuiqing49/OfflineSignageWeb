@@ -90,23 +90,94 @@
         </aside>
         <div class="article-body">
           
-<p class="lead">Running a professional digital menu board does not require expensive proprietary hardware or recurring cloud subscription fees. With OfflineSignage, any Android TV, tablet, or media box can become a reliable, local-first menu display in minutes.</p>
+<p class="lead">OfflineSignage is a <strong>local-first digital signage player and digital menu board engine</strong> built for Android TVs, tablets, and commercial displays. Operating completely without cloud dependencies, the Android device itself hosts an embedded Web server, allowing any phone or laptop on the same LAN to manage media, playlists, and screen sync directly in a web browser.</p>
 
-<h2>Why Choose a Local-First Digital Menu Board?</h2>
-<p>Traditional cloud digital signage platforms charge monthly subscriptions per screen ($10 - $50/month per display) and stop displaying content or display watermark errors if your internet goes down. A local-first architecture solves this by storing all menu media directly on the Android player device, controlled entirely over your local Wi-Fi or Ethernet network.</p>
-
-<h2>Step-by-Step Setup Guide</h2>
+<h2>I. Quick 4-Step Start Guide</h2>
 <ol>
-  <li><strong>Install & Launch OfflineSignage:</strong> Download and open OfflineSignage on your Android TV or commercial display. The app automatically enters fullscreen signage mode and displays its local pairing code and LAN IP address.</li>
-  <li><strong>Connect via Browser:</strong> On your phone or laptop, open your browser and enter the on-screen address (e.g., <code>http://192.168.1.105:8080</code>) or scan the QR code. No account registration is required.</li>
-  <li><strong>Upload Your Menu Graphics:</strong> Drag and drop your menu images, daily specials, and video clips into the Web Management Console. Set transition durations (e.g., 10 seconds per category slide).</li>
-  <li><strong>Start Fullscreen Playback:</strong> Tap &ldquo;Play&rdquo;. Your Android display immediately starts looping the menu in crystal-clear high definition.</li>
-  <li><strong>Close the Browser:</strong> You can safely close your phone or computer browser. The Android display continues running 24/7 independently from local storage.</li>
+  <li><strong>Install & Launch:</strong> Open OfflineSignage on your Android TV or display. The device enters fullscreen signage mode and displays its LAN pairing IP.</li>
+  <li><strong>Connect via Browser:</strong> On your smartphone or laptop on the same Wi-Fi, open the on-screen address (e.g., <code>http://192.168.1.105:8080</code>) or scan the QR code.</li>
+  <li><strong>Upload & Organize:</strong> Drag and drop menu posters (JPG/PNG) or promo videos (MP4) into the Web console. Set durations and save playlists.</li>
+  <li><strong>Start Autonomous Playback:</strong> Click "Play". Your display begins 4K looping. You can safely close your browser; the screen continues running 24/7 independently.</li>
 </ol>
 
-<div class="callout-tip">
-  <p><strong>💡 Pro Tip:</strong> For multi-item menus, split your items across 2&ndash;3 high-contrast slides. OfflineSignage supports automatic screen wake-lock, so your menu never sleeps during business hours.</p>
-</div>
+<h2>II. Android Display Screen Wireframes</h2>
+<h3>1. Initial Pairing & Setup Screen</h3>
+<pre><code>+-----------------------------------------------------------------------------+
+|  OfflineSignage                                              🟢 Ready       |
+|                                                                             |
+|                           [ Device: Entrance Screen-01 ]                     |
+|                                                                             |
+|                    ┌─────────────┐                                          |
+|                    │  █████████  │   📱 Scan QR Code on Phone               |
+|                    │  ██  █  ██  │                                          |
+|                    │  █████████  │   💻 Open in Computer Browser:           |
+|                    │  ██  █  ██  │      http://192.168.1.105:8080           |
+|                    │  █████████  │                                          |
+|                    └─────────────┘   🔑 One-Time Pairing Code: [ 842 190 ]  |
+|                                                                             |
+|  📶 Wi-Fi: Store_5G   |   🔒 Local-First · No Cloud · No Accounts Required  |
++-----------------------------------------------------------------------------+</code></pre>
+
+<h3>2. Remote Control Overlay Bar</h3>
+<p>Press the [OK / Select] button on your TV remote or tap the screen to summon the temporary overlay bar:</p>
+<pre><code>+-----------------------------------------------------------------------------+
+| [ ⏸ Pause ] [ ⏭ Next ] [ 🔊 80% ]   IP: 192.168.1.105:8080   [ ⚙ Settings ] |
++-----------------------------------------------------------------------------+</code></pre>
+
+<h2>III. Web Management Console Wireframes</h2>
+<h3>1. Unified Dashboard</h3>
+<pre><code>+-----------------------------------------------------------------------------+
+|  OfflineSignage Console       [Devices]  [Media]  [Playlists]  [Sync] [Config]|
++-----------------------------------------------------------------------------+
+|  📊 Overview                                                                |
+|  • Screens Online: 3    • Now Playing: Summer Specials (Playlist #1)        |
+|  • Storage: 1.2GB/16GB  • Network: Local LAN Active (Write Session Claimed) |
++-----------------------------------------------------------------------------+</code></pre>
+
+<h3>2. Playlist Editor</h3>
+<pre><code>+-----------------------------------------------------------------------------+
+|  📑 Playlist: [ Summer Drink Specials ]              [ 💾 Save ] [ ▶ Play ] |
++-----------------------------------------------------------------------------+
+|  1. ≡ [ Cover Poster.png ] ──────── Duration: [ 10 ] s ── [ Crossfade ▼ ] [🗑]|
+|  2. ≡ [ Cold Brew Video.mp4 ] ───── Length: 00:15     ── [ Fit Aspect ▼ ] [🗑]|
+|  3. ≡ [ Price Board.png ] ───────── Duration: [ 12 ] s ── [ Cut       ▼ ] [🗑]|
++-----------------------------------------------------------------------------+</code></pre>
+
+<h3>3. UDP Multi-Screen Batch Sync</h3>
+<pre><code>+-----------------------------------------------------------------------------+
+|  📡 Multi-Screen LAN Sync                          [ 🔍 Scan Local Displays ]|
++-----------------------------------------------------------------------------+
+|  [✔ Select All]                                                             |
+|  │✔ │ Main Entrance   │ 192.168.1.105   │ Local    │ Summer Drink Specials  │|
+|  │✔ │ Bar Menu Board  │ 192.168.1.108   │ Online   │ Summer Drink Specials  │|
+|  │✔ │ Window Display  │ 192.168.1.112   │ Online   │ Summer Drink Specials  │|
+|                                                                             |
+|  [ 🚀 Push Media & Schedules Over Gigabit LAN ]                             |
++-----------------------------------------------------------------------------+</code></pre>
+
+<h2>IV. Troubleshooting & FAQ</h2>
+<table class="manual-table">
+  <thead>
+    <tr><th>Issue</th><th>Probable Cause</th><th>Solution</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Cannot open Web console</strong></td>
+      <td>Devices on different Wi-Fi or missing port</td>
+      <td>Ensure phone/PC is on same Wi-Fi and URL includes <code>:8080</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Black bars on sides</strong></td>
+      <td>Media aspect ratio differs from TV</td>
+      <td>Switch scaling mode to <code>Fit Screen</code> or <code>Blur Fill</code> in media options.</td>
+    </tr>
+    <tr>
+      <td><strong>App does not start on boot</strong></td>
+      <td>Android background autostart disabled</td>
+      <td>Enable "Autostart / Run in Background" in Android App Settings for OfflineSignage.</td>
+    </tr>
+  </tbody>
+</table>
 
         </div>
       </div>
@@ -119,6 +190,14 @@
       </div>
       <div class="article-grid article-grid-compact">
         <article class="article-card">
+  <a class="article-card-media" href="../user-manual-and-quick-start-guide/"><img src="../../../assets/screenshots/01-signage-screen-main.png" alt="OfflineSignage Mode d'emploi complet et guide d'utilisation avec schémas" loading="lazy"></a>
+  <div class="article-card-body">
+    <p class="article-kicker">Mode d'emploi</p>
+    <h3><a href="../user-manual-and-quick-start-guide/">OfflineSignage Mode d'emploi complet et guide d'utilisation avec schémas</a></h3>
+    <p>Mode d'emploi détaillé : schémas d'interface, console web en réseau local, mode kiosque 24/7 et dépannage.</p>
+  </div>
+</article>
+<article class="article-card">
   <a class="article-card-media" href="../setup-offline-digital-signage-player-lan-control/"><img src="../../../assets/screenshots/05-browser-control.png" alt="Affichage dynamique local : Configuration Android avec contrôle navigateur en réseau local" loading="lazy"></a>
   <div class="article-card-body">
     <p class="article-kicker">Déploiement</p>

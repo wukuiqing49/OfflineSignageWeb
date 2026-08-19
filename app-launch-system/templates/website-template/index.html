@@ -25,6 +25,7 @@
     <nav aria-label="{{PRIMARY_NAV_LABEL}}">
       <a href="#features">{{NAV_FEATURES}}</a>
       <a href="#workflow">{{NAV_WORKFLOW}}</a>
+      {{MANUAL_NAV_ITEM}}
       {{BLOG_NAV_ITEM}}
       <a href="{{ABOUT_URL}}">{{NAV_ABOUT}}</a>
       <a href="{{SUPPORT_URL}}">{{NAV_SUPPORT}}</a>
@@ -41,7 +42,7 @@
         <p class="summary">{{SHORT_DESCRIPTION}}</p>
         <div class="hero-actions">
           {{PRIMARY_ACTION}}
-          <a class="secondary-action" href="#workflow">{{WORKFLOW_LINK_LABEL}}</a>
+          <a class="secondary-action" href="{{MANUAL_URL}}">📖 {{NAV_MANUAL}}</a>
         </div>
         {{HERO_PROOF}}
       </div>
@@ -78,6 +79,7 @@
   <footer>
     <p>{{COPYRIGHT_TEXT}}</p>
     <nav aria-label="{{FOOTER_NAV_LABEL}}">
+      {{MANUAL_NAV_ITEM}}
       <a href="{{PRIVACY_URL}}">{{NAV_PRIVACY}}</a>
       <a href="{{SUPPORT_URL}}">{{NAV_SUPPORT}}</a>
       <a href="{{ABOUT_URL}}">{{NAV_ABOUT}}</a>

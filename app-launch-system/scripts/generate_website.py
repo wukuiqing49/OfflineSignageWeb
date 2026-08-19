@@ -2648,10 +2648,24 @@ def render_site(
                 + "</ol></section>"
             )
 
-        page_values = {}
-        blog_url = "blog/" if locale == source else ("../blog/zh-CN/" if locale == "zh-CN" else "../blog/")
+        MANUAL_LABELS = {
+            "en": "User Manual",
+            "zh": "使用说明",
+            "ja": "取扱説明書",
+            "ko": "사용 설명서",
+            "es": "Manual de uso",
+            "fr": "Mode d'emploi",
+            "de": "Bedienungsanleitung",
+            "pt": "Manual do Usuário"
+        }
+        lang_code = locale.split("-")[0].lower()
+        manual_label = MANUAL_LABELS.get(lang_code, MANUAL_LABELS["en"])
+        manual_url = "blog/user-manual-and-quick-start-guide/" if locale == source else f"../blog/{locale}/user-manual-and-quick-start-guide/"
+        manual_nav_item = f'<a href="{esc(manual_url)}">{esc(manual_label)}</a>'
+        blog_url = "blog/" if locale == source else f"../blog/{locale}/"
         blog_label = nested(content, "navigation.blog", "博客" if locale.startswith("zh") else "Blog")
         blog_nav_item = f'<a href="{esc(blog_url)}">{esc(blog_label)}</a>'
+        page_values = {}
         for page in ("index.html", "privacy.html", "support.html", "about.html"):
             switcher, routes_json = locale_controls(
                 locale,
@@ -2675,6 +2689,9 @@ def render_site(
                 "PRIVACY_URL": "privacy.html",
                 "SUPPORT_URL": "support.html",
                 "ABOUT_URL": "about.html",
+                "MANUAL_URL": manual_url,
+                "NAV_MANUAL": esc(manual_label),
+                "MANUAL_NAV_ITEM": manual_nav_item,
                 "BLOG_URL": blog_url,
                 "BLOG_NAV_ITEM": blog_nav_item,
                 "LANGUAGE_SWITCHER": switcher,
