@@ -983,8 +983,9 @@ def copy_assets(app: dict, app_info_path: Path, stage: Path) -> dict:
 
     output_assets = stage / "assets"
     output_assets.mkdir(parents=True, exist_ok=True)
-    for filename in ("app.js", "styles.css", "locale-router.js"):
-        shutil.copy2(TEMPLATE_ROOT / "assets" / filename, output_assets / filename)
+    for item in (TEMPLATE_ROOT / "assets").iterdir():
+        if item.is_file():
+            shutil.copy2(item, output_assets / item.name)
 
     copied: dict[str, object] = {"screenshots": []}
     if str(app.get("googlePlayUrl") or "").strip():
@@ -2582,7 +2583,7 @@ def render_site(
     hero_relative = assets.get("coverImage") or (assets["screenshots"][0]["path"] if assets.get("screenshots") else "")
     social_relative = assets.get("socialImage")
     generated_pages: list[str] = []
-    has_blog = bool(content_ready_features(features)) and not prelaunch
+    has_blog = True
 
     for locale in locales:
         content = contents[locale]
@@ -2648,11 +2649,9 @@ def render_site(
             )
 
         page_values = {}
-        blog_url = "blog/" if locale == source else f"../blog/{locale}/"
-        blog_nav_item = (
-            f'<a href="{esc(blog_url)}">{esc(nested(content, "navigation.blog", "Blog"))}</a>'
-            if has_blog else ""
-        )
+        blog_url = "blog/" if locale == source else ("../blog/zh-CN/" if locale == "zh-CN" else "../blog/")
+        blog_label = nested(content, "navigation.blog", "博客" if locale.startswith("zh") else "Blog")
+        blog_nav_item = f'<a href="{esc(blog_url)}">{esc(blog_label)}</a>'
         for page in ("index.html", "privacy.html", "support.html", "about.html"):
             switcher, routes_json = locale_controls(
                 locale,
@@ -2896,7 +2895,8 @@ def render_site(
 
     sitemap_entries = []
     if base_url:
-        for page in sorted(set(generated_pages)):
+        all_html_files = sorted(set(path.relative_to(stage).as_posix() for path in stage.rglob("*.html") if "404" not in path.name and "google" not in path.name))
+        for page in all_html_files:
             relative_url = "" if page == "index.html" else page.removesuffix("index.html")
             sitemap_entries.append(f"  <url><loc>{esc(urljoin(base_url, relative_url))}</loc></url>")
     sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + "\n".join(sitemap_entries) + "\n</urlset>\n"
@@ -3087,6 +3087,8 @@ def generate(
     organization = load_organization(organization_path)
     with tempfile.TemporaryDirectory(prefix="app-launch-site-") as temp:
         stage = Path(temp)
+        if (output / "blog").exists():
+            shutil.copytree(output / "blog", stage / "blog", dirs_exist_ok=True)
         locales = render_site(app, organization, app_info_path, locales_root, stage)
         validate_stage(stage)
         copied = copy_stage(stage, output, force)
