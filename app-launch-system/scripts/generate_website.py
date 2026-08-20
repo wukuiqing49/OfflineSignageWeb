@@ -2744,6 +2744,7 @@ def render_site(
                 "price": "0",
                 "priceCurrency": "USD",
                 "availability": "https://schema.org/InStock",
+                "validFrom": "2026-01-01",
                 "priceValidUntil": "2030-12-31",
                 "hasMerchantReturnPolicy": {
                     "@type": "MerchantReturnPolicy",
