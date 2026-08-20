@@ -2724,6 +2724,15 @@ def render_site(
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Android",
             "category": str(app.get("category") or "Digital Signage Software"),
+            "image": f"{base_path}assets/icon.png",
+            "screenshot": [
+                f"{base_path}assets/screenshots/01-signage-screen-main.png",
+                f"{base_path}assets/screenshots/02-digital-menu-board.png"
+            ],
+            "brand": {
+                "@type": "Brand",
+                "name": app_name
+            },
             "description": str(nested(content, "home.metaDescription")),
             "featureList": [
                 str(item.get("name") or "")
@@ -2734,7 +2743,40 @@ def render_site(
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "USD",
-                "availability": "https://schema.org/InStock"
+                "availability": "https://schema.org/InStock",
+                "priceValidUntil": "2030-12-31",
+                "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "applicableCountry": "US",
+                    "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+                },
+                "shippingDetails": {
+                    "@type": "OfferShippingDetails",
+                    "shippingRate": {
+                        "@type": "MonetaryAmount",
+                        "value": "0",
+                        "currency": "USD"
+                    },
+                    "shippingDestination": {
+                        "@type": "DefinedRegion",
+                        "addressCountry": "US"
+                    },
+                    "deliveryTime": {
+                        "@type": "ShippingDeliveryTime",
+                        "handlingTime": {
+                            "@type": "QuantitativeValue",
+                            "minValue": 0,
+                            "maxValue": 0,
+                            "unitCode": "DAY"
+                        },
+                        "transitTime": {
+                            "@type": "QuantitativeValue",
+                            "minValue": 0,
+                            "maxValue": 0,
+                            "unitCode": "DAY"
+                        }
+                    }
+                }
             },
             "aggregateRating": {
                 "@type": "AggregateRating",
