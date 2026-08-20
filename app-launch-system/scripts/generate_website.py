@@ -2719,7 +2719,7 @@ def render_site(
 
         software_data = {
             "@context": "https://schema.org",
-            "@type": ["SoftwareApplication", "Product"],
+            "@type": "SoftwareApplication",
             "name": app_name,
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Android",
@@ -2729,10 +2729,6 @@ def render_site(
                 f"{base_path}assets/screenshots/01-signage-screen-main.png",
                 f"{base_path}assets/screenshots/02-digital-menu-board.png"
             ],
-            "brand": {
-                "@type": "Brand",
-                "name": app_name
-            },
             "description": str(nested(content, "home.metaDescription")),
             "featureList": [
                 str(item.get("name") or "")
@@ -2745,39 +2741,7 @@ def render_site(
                 "priceCurrency": "USD",
                 "availability": "https://schema.org/InStock",
                 "validFrom": "2026-01-01",
-                "priceValidUntil": "2030-12-31",
-                "hasMerchantReturnPolicy": {
-                    "@type": "MerchantReturnPolicy",
-                    "applicableCountry": "US",
-                    "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-                },
-                "shippingDetails": {
-                    "@type": "OfferShippingDetails",
-                    "shippingRate": {
-                        "@type": "MonetaryAmount",
-                        "value": "0",
-                        "currency": "USD"
-                    },
-                    "shippingDestination": {
-                        "@type": "DefinedRegion",
-                        "addressCountry": "US"
-                    },
-                    "deliveryTime": {
-                        "@type": "ShippingDeliveryTime",
-                        "handlingTime": {
-                            "@type": "QuantitativeValue",
-                            "minValue": 0,
-                            "maxValue": 0,
-                            "unitCode": "DAY"
-                        },
-                        "transitTime": {
-                            "@type": "QuantitativeValue",
-                            "minValue": 0,
-                            "maxValue": 0,
-                            "unitCode": "DAY"
-                        }
-                    }
-                }
+                "priceValidUntil": "2030-12-31"
             },
             "aggregateRating": {
                 "@type": "AggregateRating",
@@ -2785,6 +2749,10 @@ def render_site(
                 "reviewCount": "128",
                 "bestRating": "5",
                 "worstRating": "1"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": organization.get("legalName", app_name)
             }
         }
         if app.get("googlePlayUrl"):
