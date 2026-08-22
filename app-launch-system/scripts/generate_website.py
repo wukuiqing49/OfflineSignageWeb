@@ -2940,8 +2940,12 @@ def render_site(
         relative_url = "" if page == "index.html" else page.removesuffix("index.html")
         loc_str = urljoin(base_url, relative_url) if base_url else ("/" + relative_url)
         sitemap_entries.append(f"  <url><loc>{esc(loc_str)}</loc></url>")
-    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + "\n".join(sitemap_entries) + "\n</urlset>\n"
+    sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + "\n".join(sitemap_entries) + "\n</urlset>\n"
     (stage / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+    xsl_path = TEMPLATE_ROOT / "sitemap.xsl"
+    xsl_content = xsl_path.read_text(encoding="utf-8") if xsl_path.is_file() else ""
+    if xsl_content:
+        (stage / "sitemap.xsl").write_text(xsl_content, encoding="utf-8")
     robots = (
         "User-agent: *\nAllow: /\n\n"
         "User-agent: Googlebot\nAllow: /\n\n"
@@ -3033,6 +3037,11 @@ def render_site(
         "content": sitemap,
         "contentType": "application/xml; charset=UTF-8",
     }
+    if xsl_content:
+        verification_routes["/sitemap.xsl"] = {
+            "content": xsl_content,
+            "contentType": "text/xsl; charset=UTF-8",
+        }
     worker = (
         "const verificationRoutes = "
         + json.dumps(verification_routes, ensure_ascii=False)

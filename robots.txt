@@ -37,4 +37,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: /sitemap.xml
+Sitemap: https://offlinesignage.pages.dev/sitemap.xml
